@@ -4,8 +4,7 @@
     {
         static async Task Main(string[] args)
         {
-            BonchAPI api = new BonchAPI();
-            await api.Test();
+            Console.WriteLine("Welcome to BonchMark");
         }
     }
 }
