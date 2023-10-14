@@ -6,16 +6,14 @@ namespace BonchMark
     public class BonchAPI
     {
         private HttpClient _httpClient;
-
-        private string[] _ivan = { "vanvanich531%40gmail.com", "2MFPBNG8RHB" }; //For testing ONLY. It's not a final solution!
-        private string[] _tima = { "tsolomatin1704%40gmail.com", "Pidor228" };
+        
         private class LkRequest : StringContent
         {
             public LkRequest(string content)
                 : base(content, null, "application/x-www-form-urlencoded") { }
         }
 
-        private enum MarkState
+        public enum MarkStatus
         {
             NoButton,
             UpdateOnly,
@@ -42,6 +40,7 @@ namespace BonchMark
             }
             return false;
         }
+
         private async Task<bool> Login(string users, string parole)
         {
             using LkRequest loginRequest = new LkRequest($"users={users}&parole={parole}");
@@ -55,6 +54,7 @@ namespace BonchMark
                 return true;
             return false;
         }
+
         private async Task<string> PullTimetable()
         {
             using LkRequest timetableRequest = new LkRequest("key=6118");
@@ -66,55 +66,54 @@ namespace BonchMark
             string text = await timetableResponse.Content.ReadAsStringAsync();
             return text;
         }
-        private async Task<MarkState> Mark()
+
+        private async Task<MarkStatus> Mark()
         {
             var doc = CreateHtmlDoc(await PullTimetable());
             var openZanNode = doc.DocumentNode.SelectSingleNode("/div[@class='container-fluid']/table[@class='simple-little-table']/tbody/tr/td/span/a");
             if (openZanNode != null)
             {
                 string openZan = openZanNode.OuterHtml;
-                openZan = openZan.Substring(21, openZan.IndexOf(")") - openZan.IndexOf("("));
+                openZan = openZan.Substring(openZan.IndexOf("(") + 1, openZan.IndexOf(")") - openZan.IndexOf("(") - 1);
                 string[] openZanArr = openZan.Split(',');
                 if (openZanArr.Length != 2)
                 {
-                    return MarkState.IncorrectOpenZan;
+                    return MarkStatus.UpdateOnly;
                 }
                 using LkRequest markRequest = new LkRequest($"open=1&rasp={openZanArr[0]}&week=={openZanArr[1]}");
                 using var markResponse = await _httpClient.PostAsync(_httpClient.BaseAddress + "/cabinet/project/cabinet/forms/raspisanie.php", markRequest);
-                if (InvalidResponseCheck(markResponse))
-                {
-                    return MarkState.RequestFailed;
-                }
                 string markResponseText = await markResponse.Content.ReadAsStringAsync();
-                if (markResponseText.Contains("id:0"))
+                if (InvalidResponseCheck(markResponse) || markResponseText.Contains("id:0"))
                 {
-                    return MarkState.UpdateOnly;
+                    return MarkStatus.RequestFailed;
                 }
-                else
-                    return MarkState.OK;
+                return MarkStatus.OK;
             }
             else
-                return MarkState.NoButton;
+                return MarkStatus.NoButton;
         }
+
         private HtmlDocument CreateHtmlDoc(string content)
         {
             HtmlDocument htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(content);
             return htmlDoc;
         }
+
         private bool InvalidResponseCheck(HttpResponseMessage message)
         {
-            if (message == null && message.StatusCode != HttpStatusCode.OK)
+            if (message == null || message.StatusCode != HttpStatusCode.OK)
                 return true;
             else
                 return false;
         }
-        public async Task MarkSequence() //For testing ONLY. It's not a final solution!
-        {
-            await Init();
-            await Login(_tima[0], _tima[1]);
-            await Mark();
 
+        public async Task<MarkStatus> MarkSequence(string users, string parole)
+        {
+            if (await Init() && await Login(users, parole))
+                return await Mark();
+            else
+                return MarkStatus.RequestFailed;
         }
     }
 }
