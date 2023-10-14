@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BonchMarkApp.MainPage">
+
+    <StackLayout BackgroundColor="White">
+        <Frame BackgroundColor="#f5841f" Padding="24" CornerRadius="0" Margin="0">
+            <Label Text="Welcome to BonchMark!" HorizontalTextAlignment="Center" TextColor="White" FontSize="48" FontFamily="Fira Sans Bold"/>
+        </Frame>
+        <Button Text="Начать занятие" Margin="150" FontFamily="Fira Sans Reg" FontAttributes="Bold" FontSize="22" BackgroundColor="#f5841f" CornerRadius="10" WidthRequest="200" HeightRequest="74" HorizontalOptions="Center"></Button>
+    </StackLayout>
+
+</ContentPage>
