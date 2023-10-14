@@ -1,6 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace BonchMarkApp
 {
@@ -9,7 +7,7 @@ namespace BonchMarkApp
         public App()
         {
             InitializeComponent();
-            MainPage = new LoginPage();
+            MainPage = new MainPage(); //MainPage LoginPage
         }
 
         protected override void OnStart()

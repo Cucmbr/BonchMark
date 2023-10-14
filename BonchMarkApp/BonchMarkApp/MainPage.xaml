@@ -3,11 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BonchMarkApp.MainPage">
 
-    <StackLayout BackgroundColor="White">
+    <StackLayout BackgroundColor="#FAF0DE">
         <Frame BackgroundColor="#f5841f" Padding="24" CornerRadius="0" Margin="0">
             <Label Text="Welcome to BonchMark!" HorizontalTextAlignment="Center" TextColor="White" FontSize="48" FontFamily="Fira Sans Bold"/>
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="0, 1">
+                    <GradientStop Color="#f5841f" Offset="0.4"/>
+                    <GradientStop Color="#f7911e" Offset="1"/>
+                </LinearGradientBrush>
+            </Frame.Background>
         </Frame>
-        <Button Text="Начать занятие" Margin="150" FontFamily="Fira Sans Reg" FontAttributes="Bold" FontSize="22" BackgroundColor="#f5841f" CornerRadius="10" WidthRequest="200" HeightRequest="74" HorizontalOptions="Center"></Button>
+        <Button Text="Начать занятие" FontFamily="Fira Sans Reg" FontAttributes="Bold" FontSize="22" BackgroundColor="#f5841f" CornerRadius="10" WidthRequest="200" HeightRequest="74" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White"/>
+        <Frame BackgroundColor="#f5841f" HeightRequest="50" HorizontalOptions="FillAndExpand" CornerRadius="0">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="0, 1">
+                    <GradientStop Color="#f5841f" Offset="0.4"/>
+                    <GradientStop Color="#f7911e" Offset="1"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+        </Frame>
     </StackLayout>
 
 </ContentPage>
