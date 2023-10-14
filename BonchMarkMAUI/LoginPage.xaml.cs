@@ -1,13 +1,8 @@
-﻿using System;
-using System.IO;
-using Xamarin.Forms;
+namespace BonchMarkMAUI;
 
-
-namespace BonchMarkApp
+public partial class LoginPage : ContentPage
 {
-    public partial class LoginPage : ContentPage
-    {
-        public LoginPage()
+	public LoginPage()
         {
             InitializeComponent();
         }
@@ -20,5 +15,4 @@ namespace BonchMarkApp
             //    File.WriteAllText(Path.Combine(App.folderPath, "UserData.txt"), users)
             //}
         }
-    }
 }

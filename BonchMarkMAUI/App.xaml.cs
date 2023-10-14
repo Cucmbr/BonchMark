@@ -1,8 +1,4 @@
-﻿using Xamarin.Forms;
-using System.IO;
-using System;
-
-namespace BonchMarkApp
+﻿namespace BonchMarkMAUI
 {
     public partial class App : Application
     {
@@ -12,6 +8,8 @@ namespace BonchMarkApp
         public App()
         {
             InitializeComponent();
+
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()
