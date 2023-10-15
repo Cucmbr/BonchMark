@@ -7,12 +7,29 @@ public partial class LoginPage : ContentPage
             InitializeComponent();
         }
 
-        private void OnButtonLogin(object sender, EventArgs args)
+    private async void OnButtonLogin(object sender, EventArgs args)
+    {
+        if (!await App.api.Init())
         {
-            //if()
-            //if (App.files.Length != 1)
-            //{
-            //    File.WriteAllText(Path.Combine(App.folderPath, "UserData.txt"), users)
-            //}
+            ServerErr.IsVisible = true;
         }
+        else if (!await App.api.Login(usersEntry.Text, paroleEntry.Text))
+        {
+            AuthErr.IsVisible = true;
+        }
+        else
+        {
+            File.WriteAllText(Path.Combine(App.folderPath, "UserData.txt"), usersEntry.Text + ":" + paroleEntry.Text);
+            await Navigation.PushAsync(new NavigationPage(new MainPage()));
+        }
+    }
+
+    private void PressAnim(object sender, EventArgs args)
+    {
+        loginButton.ScaleTo(0.95, 100, Easing.Linear);
+    }
+    private void ReleaseAnim(object sender, EventArgs args)
+    {
+        loginButton.ScaleTo(1, 100, Easing.Linear);
+    }
 }

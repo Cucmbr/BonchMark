@@ -9,8 +9,8 @@
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("FiraSans-Regular.ttf", "Fira Sans Reg");
+                    fonts.AddFont("FiraSans-Bold.ttf", "Fira Sans Bold");
                 });
 
             return builder.Build();

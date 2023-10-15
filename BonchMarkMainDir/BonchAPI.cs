@@ -6,6 +6,8 @@ namespace BonchMark
     public class BonchAPI
     {
         private HttpClient _httpClient;
+        private string _users;
+        private string _parole;
         
         private class LkRequest : StringContent
         {
@@ -17,7 +19,6 @@ namespace BonchMark
         {
             NoButton,
             UpdateOnly,
-            IncorrectOpenZan,
             RequestFailed,
             OK
         }
@@ -31,7 +32,7 @@ namespace BonchMark
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.967 YaBrowser/23.9.1.967 Yowser/2.5 Safari/537.36");
         }
 
-        private async Task<bool> Init()
+        public async Task<bool> Init()
         {
             using var initResponse = await _httpClient.GetAsync("https://lk.sut.ru/");
             if (initResponse != null) 
@@ -41,7 +42,7 @@ namespace BonchMark
             return false;
         }
 
-        private async Task<bool> Login(string users, string parole)
+        public async Task<bool> Login(string users, string parole)
         {
             using LkRequest loginRequest = new LkRequest($"users={users}&parole={parole}");
             using var loginResponse = await _httpClient.PostAsync(_httpClient.BaseAddress + "/cabinet/lib/autentificationok.php", loginRequest);
@@ -51,7 +52,11 @@ namespace BonchMark
             }
             string loginResponseText = await loginResponse.Content.ReadAsStringAsync();
             if (loginResponseText == "1")
+            {
+                _users = users;
+                _parole = parole;
                 return true;
+            }
             return false;
         }
 
@@ -108,9 +113,9 @@ namespace BonchMark
                 return false;
         }
 
-        public async Task<MarkStatus> MarkSequence(string users, string parole)
+        public async Task<MarkStatus> MarkSequence()
         {
-            if (await Init() && await Login(users, parole))
+            if (await Init() && await Login(_users, _parole))
                 return await Mark();
             else
                 return MarkStatus.RequestFailed;

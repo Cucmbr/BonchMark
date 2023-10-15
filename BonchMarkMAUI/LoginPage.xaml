@@ -1,37 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage 
+    NavigationPage.HasNavigationBar="False"
+    NavigationPage.HasBackButton="False"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BonchMarkMAUI.LoginPage"
-             Title="LoginPage">
-    <ContentPage.Content>
-    <StackLayout  BackgroundColor="#FAF0DE">
-        <Frame BackgroundColor="#f5841f" HeightRequest="50" HorizontalOptions="FillAndExpand" CornerRadius="0">
-            <Label Text="BonchMark" HorizontalOptions="CenterAndExpand" TextColor="white" FontSize="48" FontFamily="Fira Sans Bold" VerticalOptions="CenterAndExpand"/>
-            <Frame.Background>
-                <LinearGradientBrush EndPoint="0, 1">
-                    <GradientStop Color="#f5841f" Offset="0.4"/>
-                    <GradientStop Color="#f7911e" Offset="1"/>
-                </LinearGradientBrush>
-            </Frame.Background>
-        </Frame>
-        <Frame BackgroundColor="#FFDA96" Margin="20,10,20,0" CornerRadius="15">
+             x:Class="BonchMarkMAUI.LoginPage">
+    <StackLayout BackgroundColor="#FAF0DE">
+        <Border StrokeThickness="0">
+            <Frame BackgroundColor="#f5841f" CornerRadius="0">
+                <Label Text="BonchMark" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="48" FontFamily="Fira Sans Bold" VerticalOptions="CenterAndExpand"/>
+                <Frame.Background>
+                    <LinearGradientBrush EndPoint="0, 1">
+                        <GradientStop Color="#f5841f" Offset="0.4"/>
+                        <GradientStop Color="#f7911e" Offset="1"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+        </Border>
+
+        <Frame BackgroundColor="#FFDA96" BorderColor="#FAF0DE" Margin="20,20,20,20" CornerRadius="15">
             <Label Text="Вход в личный кабинет" HorizontalOptions="CenterAndExpand" TextColor="#5C5C5C" FontSize="20" FontFamily="Fira Sans Reg" FontAttributes="Bold"/>
         </Frame>
-        <Frame>
-            <Entry x:Name="usersEntry" HeightRequest="45" Margin="50,0,50,0" Placeholder="E-mail" TextColor="#1F1F1F" PlaceholderColor="#5C5C5C" BackgroundColor="#FFDA96"/>
+
+        <Entry x:Name="usersEntry" Margin="50,0,50,20" HeightRequest="45" Placeholder="E-mail" TextColor="#1F1F1F" PlaceholderColor="#5C5C5C" BackgroundColor="#FFDA96"/>
+        <Entry x:Name="paroleEntry" HeightRequest="45" Margin="50,0,50,20" Placeholder="Пароль" IsPassword="true" TextColor="#1F1F1F" PlaceholderColor="#5C5C5C" BackgroundColor="#FFDA96"/>
+
+        <Frame x:Name="AuthErr" IsVisible="False" HorizontalOptions="CenterAndExpand" BackgroundColor="#FFC5C5" BorderColor="#FAF0DE" Padding="50,20" Margin="20,20,20,20" CornerRadius="15">
+            <Label Text="Неправильный логин или пароль 👢" HorizontalOptions="CenterAndExpand" TextColor="#5C5C5C" FontSize="20" FontFamily="Fira Sans Reg" FontAttributes="Bold"/>
         </Frame>
-        <Frame>
-            <Entry x:Name="paroleEntry" HeightRequest="45" Margin="50,0,50,0" Placeholder="Пароль" IsPassword="true" TextColor="#1F1F1F" PlaceholderColor="#5C5C5C" BackgroundColor="#FFDA96"/>
+        <Frame x:Name="ServerErr" IsVisible="False" HorizontalOptions="CenterAndExpand" BackgroundColor="#FFC5C5" BorderColor="#FAF0DE" Padding="50,20" Margin="20,20,20,20" CornerRadius="15">
+            <Label Text="Личный кабинет не отвечает 😼" HorizontalOptions="CenterAndExpand" TextColor="#5C5C5C" FontSize="20" FontFamily="Fira Sans Reg" FontAttributes="Bold"/>
         </Frame>
-        <Button x:Name="loginButton" Clicked="OnButtonLogin" BackgroundColor="#f5841f" Text="Войти" Padding="15" HorizontalOptions="CenterAndExpand" CornerRadius="15" FontFamily="Fira Sans Reg" FontAttributes="Bold" FontSize="23"/>
-        <Frame BackgroundColor="#f5841f" HeightRequest="25" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" CornerRadius="0">
+        
+        <Button x:Name="loginButton" Pressed="PressAnim" Released="ReleaseAnim" Clicked="OnButtonLogin" BackgroundColor="#f5841f" Text="Войти" TextColor="White" Padding="15" HorizontalOptions="CenterAndExpand" CornerRadius="15" FontFamily="Fira Sans Reg" FontAttributes="Bold" FontSize="23"/>
+
+        <Border StrokeThickness="0" VerticalOptions="EndAndExpand">
+            <Frame BackgroundColor="#f5841f" HeightRequest="50" HorizontalOptions="FillAndExpand" CornerRadius="0">
             <Frame.Background>
                 <LinearGradientBrush EndPoint="0, 1">
                     <GradientStop Color="#f5841f" Offset="0.4"/>
                     <GradientStop Color="#f7911e" Offset="1"/>
                 </LinearGradientBrush>
             </Frame.Background>
-        </Frame>
+            </Frame>
+        </Border>
     </StackLayout>
-</ContentPage.Content>
 </ContentPage>

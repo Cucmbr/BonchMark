@@ -148,12 +148,6 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BonchMarkApp\BonchMarkApp.csproj">
-      <Project>{C9885217-DF40-44C2-9FF6-EF32231B73EE}</Project>
-      <Name>BonchMarkApp</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
