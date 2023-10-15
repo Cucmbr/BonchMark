@@ -5,11 +5,11 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BonchMarkMAUI.MainPage">
-
+             
     <StackLayout BackgroundColor="#FAF0DE">
         <Border StrokeThickness="0">
             <Frame BackgroundColor="#f5841f" CornerRadius="0">
-                <Label Text="😼BonchMark👢" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="48" FontFamily="Fira Sans Bold" VerticalOptions="CenterAndExpand"/>
+                <Label Text="BonchMark" HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="48" FontFamily="Fira Sans Bold" VerticalOptions="CenterAndExpand"/>
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="0, 1">
                         <GradientStop Color="#f5841f" Offset="0.4"/>
