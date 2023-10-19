@@ -53,6 +53,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Resources\Images\**" />
+	  <AndroidResource Remove="Resources\Raw\**" />
+	  <Compile Remove="Resources\Images\**" />
+	  <Compile Remove="Resources\Raw\**" />
+	  <EmbeddedResource Remove="Resources\Images\**" />
+	  <EmbeddedResource Remove="Resources\Raw\**" />
+	  <MauiCss Remove="Resources\Images\**" />
+	  <MauiCss Remove="Resources\Raw\**" />
+	  <MauiXaml Remove="Resources\Images\**" />
+	  <MauiXaml Remove="Resources\Raw\**" />
+	  <None Remove="Resources\Images\**" />
+	  <None Remove="Resources\Raw\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\AppIcon\appiconfg.svg" />
 	  <None Remove="Resources\Fonts\FiraSans-Bold.ttf" />
@@ -72,11 +87,6 @@
 	  <MauiXaml Update="LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Resources\Images\" />
-	  <Folder Include="Resources\Raw\" />
 	</ItemGroup>
 
 	<ItemGroup>
