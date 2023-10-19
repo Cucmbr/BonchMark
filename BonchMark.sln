@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BonchMark", "BonchMarkMainD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BonchMarkMAUI", "BonchMarkMAUI\BonchMarkMAUI.csproj", "{51F0E953-4690-449C-832C-E21AF0D015E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BonchMarkBlazor", "BonchMarkBlazor\BonchMarkBlazor.csproj", "{D2D64E30-0ACD-4120-9F7F-10A2803D281F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BonchMarkBlazor", "BonchMarkBlazor\BonchMarkBlazor.csproj", "{D2D64E30-0ACD-4120-9F7F-10A2803D281F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

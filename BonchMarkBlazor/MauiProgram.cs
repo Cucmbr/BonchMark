@@ -1,8 +1,5 @@
-﻿using BonchMarkBlazor.Data;
-using Microsoft.AspNetCore.Components.WebView.Maui;
-
-namespace BonchMarkBlazor
-{
+﻿namespace BonchMarkBlazor
+{ 
     public static class MauiProgram
     {
         public static MauiApp CreateMauiApp()
@@ -12,15 +9,14 @@ namespace BonchMarkBlazor
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("FiraSans-Regular.ttf", "Fira Sans Reg");
+                    fonts.AddFont("FiraSans-Bold.ttf", "Fira Sans Bold");
                 });
 
             builder.Services.AddMauiBlazorWebView();
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
 #endif
-
-            builder.Services.AddSingleton<WeatherForecastService>();
 
             return builder.Build();
         }
