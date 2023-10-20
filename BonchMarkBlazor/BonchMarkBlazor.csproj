@@ -31,7 +31,8 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForeGround="Resources\AppIcon\appiconfg.svg" />
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg"/>
+        <MauiIcon Include="Resources\AppIcon\appiconfg.svg" />
         <!-- Splash Screen -->
         <MauiSplash Include="D:\Documents\GitHub\BonchMark\BonchMarkBlazor\Resources\Splash\splash.svg" Color="#f5841f" />
         <!-- Images -->
@@ -43,6 +44,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Resources\AppIcon\appiconfg.svg" />
       <None Remove="Resources\Fonts\FiraSans-Bold.ttf" />
       <None Remove="Resources\Fonts\FiraSans-Regular.ttf" />
       <None Remove="Resources\Splash\splash.svg" />
@@ -50,7 +52,6 @@
 
     <ItemGroup>
       <Folder Include="Data\" />
-      <Folder Include="Pages\" />
     </ItemGroup>
 
     <ItemGroup>
