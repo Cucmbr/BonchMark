@@ -44,6 +44,20 @@
     </ItemGroup>
 
     <ItemGroup>
+      <AndroidResource Remove="Data\**" />
+      <AndroidResource Remove="wwwroot\css\fira-sans\**" />
+      <Compile Remove="Data\**" />
+      <Compile Remove="wwwroot\css\fira-sans\**" />
+      <Content Remove="Data\**" />
+      <Content Remove="wwwroot\css\fira-sans\**" />
+      <EmbeddedResource Remove="Data\**" />
+      <EmbeddedResource Remove="wwwroot\css\fira-sans\**" />
+      <MauiXaml Remove="Data\**" />
+      <None Remove="Data\**" />
+      <None Remove="wwwroot\css\fira-sans\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Compile Remove="Pages\LoginPage.raor.cs" />
     </ItemGroup>
 
@@ -58,15 +72,6 @@
       <None Remove="Resources\Fonts\FiraSans-Bold.ttf" />
       <None Remove="Resources\Fonts\FiraSans-Regular.ttf" />
       <None Remove="Resources\Splash\splash.svg" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Data\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <MauiFont Include="wwwroot\css\open-iconic\font\fonts\FiraSans-Bold.ttf" />
-      <MauiFont Include="wwwroot\css\open-iconic\font\fonts\FiraSans-Regular.ttf" />
     </ItemGroup>
 
     <ItemGroup>

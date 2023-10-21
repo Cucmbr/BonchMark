@@ -1,30 +1,20 @@
-﻿body {
-    padding: 0;
-}
-
-h1 {
+﻿h2 {
     margin: 0;
     color: white;
-}
-
-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5rem;
-    background-color: #f5841f;
-    margin-bottom: 2rem;
+    font-weight: bold;
 }
 
 .login_block {
     border-radius: 1rem;
-    background-color: antiquewhite;
+    background: var(--accent-bgcolor);
+    margin: 0 4rem 4rem 4rem;
+    box-shadow: 0 4px 1rem 0.05rem #bebebe;
 }
 
 .login_header {
     border-radius: 1rem 1rem 0 0;
     padding: 1rem 0 1rem 0;
-    background-color: aqua;
+    background: linear-gradient(var(--gradient-colors));
     text-align: center;
 }
 
@@ -38,14 +28,32 @@ header {
 .login_forms input {
     border: 0;
     border-radius: 1rem;
-    background-color: burlywood;
+    background-color: #EFD0A8;
+    color: var(--text-gray);
+    font-family: 'Fira Sans Reg';
+    font-size: 1rem;
     text-indent: 1rem;
     height: 3rem;
+    transition: .3s;
 }
-.login_forms input::placeholder {
-    color: aquamarine;
+    .login_forms input::placeholder {
+        color: var(--text-gray);
+    }
+    .login_forms input:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.08rem var(--main-color);
+        background-color: #f2c696;
+        transform: scale(1.05);
+    }
+
+.mainlg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
-.login_forms input:focus {
-    outline-width: 0;
-    background-color: saddlebrown;
+
+.btn_login {
+    width: 10rem;
+    margin: 0 auto;
 }

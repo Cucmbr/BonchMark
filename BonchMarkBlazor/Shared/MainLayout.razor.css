@@ -2,10 +2,24 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .content {
     padding: 0;
+    height: 100%;
+}
+
+h1 {
+    margin: 0;
+    color: white;
+}
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    background: linear-gradient(var(--gradient-colors));
 }
 
 main {
@@ -40,7 +54,7 @@ main {
         text-overflow: ellipsis;
     }
 
-@media (max-width: 640.98px) {
+/*@media (max-width: 640.98px) {
     .top-row:not(.auth) {
         display: none;
     }
@@ -70,10 +84,10 @@ main {
         position: sticky;
         top: 0;
         z-index: 1;
-    }
+    }*/
 
     /*.top-row, article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
     }*/
-}
+/*}*/

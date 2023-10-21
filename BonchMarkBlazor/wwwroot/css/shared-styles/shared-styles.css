@@ -1,0 +1,56 @@
+﻿:root {
+	--main-color: #f5841f;
+	--main-bgcolor: #FAF0DE;
+	--accent-bgcolor: #FAE6C3;
+	--text-gray: #5C5C5C;
+	--gradient-colors: var(--main-color) 40%, #f7911e;
+}
+
+@font-face {
+	font-family: "Fira Sans Reg";
+	src: url('FiraSans-Regular.ttf');
+}
+@font-face {
+	font-family: "Fira Sans Bold";
+	src: url('FiraSans-Bold.ttf');
+}
+
+* {
+	user-drag: none;
+	-webkit-user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+html, body {
+	font-family: 'Fira Sans Reg';
+	margin: 0;
+	background-color: var(--main-bgcolor);
+	height: 100%;
+}
+
+h1 {
+	font-family: 'Fira Sans Bold';
+}
+
+button {
+	background: linear-gradient(var(--gradient-colors));
+	border: none;
+	padding: 1rem 1rem;
+	color: white;
+	font-family: 'Fira Sans Bold';
+	font-size: 1.5rem;
+	border-radius: 1rem;
+	transition: .15s;
+}
+
+	button:active {
+		filter: brightness(.9);
+		transform: scale(.92);
+	}
+
+#app {
+	height: 100%;
+}

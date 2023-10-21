@@ -1,15 +1,23 @@
-﻿@page "/mark"
-<body>
-    <header>
-        <h1>BonchMark</h1>
-    </header>
-    <main>
-        <button>Benro</button>
-    </main>
-    <footer>
-        <div class="footer_block"></div>
-    </footer>
-</body>
+﻿@page "/"
+
+@if(true)
+{
+    <body>
+        <header>
+            <h1>BonchMark</h1>
+        </header>
+        <main>
+            <button>Benro</button>
+        </main>
+        <footer>
+            <div class="nav_footer"></div>
+        </footer>
+    </body>
+}
+else
+{
+    <LoginPage />
+}
 
 @code {
 

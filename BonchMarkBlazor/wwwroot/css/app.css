@@ -1,13 +1,4 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-
-@font-face {
-    font-family: "Fira Sans";
-    src: url('../css/open-iconic/font/fonts/FiraSans-Regular.ttf') format('truetype');
-}
-
-html, body {
-    font-family: 'Fira Sans', sans-serif;
-}
+﻿
 
 h1:focus {
     outline: none;
