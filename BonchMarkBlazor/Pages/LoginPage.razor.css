@@ -1,1 +1,51 @@
-﻿
+﻿body {
+    padding: 0;
+}
+
+h1 {
+    margin: 0;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    background-color: #f5841f;
+    margin-bottom: 2rem;
+}
+
+.login_block {
+    border-radius: 1rem;
+    background-color: antiquewhite;
+}
+
+.login_header {
+    border-radius: 1rem 1rem 0 0;
+    padding: 1rem 0 1rem 0;
+    background-color: aqua;
+    text-align: center;
+}
+
+.login_forms {
+    padding: 2.8rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.login_forms input {
+    border: 0;
+    border-radius: 1rem;
+    background-color: burlywood;
+    text-indent: 1rem;
+    height: 3rem;
+}
+.login_forms input::placeholder {
+    color: aquamarine;
+}
+.login_forms input:focus {
+    outline-width: 0;
+    background-color: saddlebrown;
+}

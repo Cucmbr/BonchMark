@@ -48,6 +48,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Remove="wwwroot\css\open-iconic\font\fonts\FiraSans-Bold.ttf" />
+      <Content Remove="wwwroot\css\open-iconic\font\fonts\FiraSans-Regular.ttf" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Remove="Pages\NewFile1.txt" />
       <None Remove="Resources\AppIcon\appiconfg.svg" />
       <None Remove="Resources\Fonts\FiraSans-Bold.ttf" />
@@ -57,6 +62,11 @@
 
     <ItemGroup>
       <Folder Include="Data\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiFont Include="wwwroot\css\open-iconic\font\fonts\FiraSans-Bold.ttf" />
+      <MauiFont Include="wwwroot\css\open-iconic\font\fonts\FiraSans-Regular.ttf" />
     </ItemGroup>
 
     <ItemGroup>
