@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:BonchMarkBlazor"
              x:Class="BonchMarkBlazor.MainPage"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             xmlns:pages="clr-namespace:BonchMarkBlazor.Pages">
 
     <BlazorWebView HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
-            <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
+            <RootComponent x:Name="MainRoot" Selector="#app" ComponentType="{x:Type local:Main}" />
         </BlazorWebView.RootComponents>
     </BlazorWebView>
 

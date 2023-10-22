@@ -4,11 +4,20 @@
     font-weight: bold;
 }
 
+.server_err {
+    margin-bottom: 2rem;
+    display: none;
+}
+
+main {
+    align-items: center;
+}
+
 .login_block {
     border-radius: 1rem;
     background: var(--accent-bgcolor);
     margin: 0 4rem 4rem 4rem;
-    box-shadow: 0 4px 1rem 0.05rem #bebebe;
+    box-shadow: 0 4px 1rem 0 #bebebe;
 }
 
 .login_header {
@@ -27,6 +36,7 @@
 
 .login_forms input {
     border: 0;
+    min-width: 15rem;
     border-radius: 1rem;
     background-color: #EFD0A8;
     color: var(--text-gray);
@@ -45,13 +55,6 @@
         background-color: #f2c696;
         transform: scale(1.05);
     }
-
-.mainlg {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-}
 
 .btn_login {
     width: 10rem;

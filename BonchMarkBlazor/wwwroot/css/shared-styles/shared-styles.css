@@ -16,7 +16,6 @@
 }
 
 * {
-	user-drag: none;
 	-webkit-user-drag: none;
 	user-select: none;
 	-moz-user-select: none;
@@ -33,6 +32,29 @@ html, body {
 
 h1 {
 	font-family: 'Fira Sans Bold';
+}
+
+.mainpg {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+}
+
+.status_message {
+	display: none;
+	margin: 0 1rem;
+	margin-bottom: 4rem;
+	width: fit-content;
+	background-color: var(--accent-bgcolor);
+	border-radius: 1rem;
+	font-weight: bold;
+	text-align: center;
+	padding: 1rem 1rem;
+	color: var(--text-gray);
+	box-shadow: 0 4px 0.7rem 0 #bebebe;
+	font-size: 1.3rem;
+	transition: .2s;
 }
 
 button {

@@ -1,19 +1,63 @@
-﻿
+﻿@page "/"
+@inject NavigationManager Navigation
 <body>
-
-    <main class="mainlg">
+    <main class="mainpg">
+        <div class="server_err status_message" style="@err_display">@err_msg</div>
         <div class="login_block">
             <div class="login_header">
-                <h2>Вход</h2>
+                <h2>Вход в ЛК</h2>
             </div>
             <div class="login_forms">
-                <input placeholder="E-mail" type="email" />
-                <input placeholder="Пароль" type="password"/>
+                <input @bind="usersEntry" placeholder="E-mail"/>
+                <input @bind="paroleEntry" placeholder="Пароль" type="password"/>
             </div>
         </div>
-        <button class="btn_login">Войти</button>
+        <button class="btn_login" disabled="@btn_lg_disable" @onclick="OnButtonLogin" style="@btn_lg_style">Войти</button>
     </main>
-    <footer>
-        <div class="footer_block"></div>
-    </footer>
 </body>
+
+@code{
+    private string err_msg;
+    private string err_display;
+    private string usersEntry;
+    private string paroleEntry;
+    private string btn_lg_style;
+    private bool btn_lg_disable;
+
+    private async void OnButtonLogin()
+    {
+        btn_lg_style = "opacity: .5;";
+        btn_lg_disable = true;
+
+        if (!await App.api.Init())
+        {
+            err_msg = "😼: \"Личный кабинет не отвечает\"";
+            err_display = "display: block";
+        }
+        else if (!await App.api.Login(usersEntry, paroleEntry))
+        {
+
+            err_msg = "😼: \"Неправильный логин или пароль\"";
+            err_display = "display: block";
+        }
+        else
+        {
+            File.WriteAllText(Path.Combine(App.folderPath, "UserData.txt"), usersEntry + ":" + paroleEntry);
+            Navigation.NavigateTo("/mark");
+        }
+
+        btn_lg_style = "opacity: 1;";
+        btn_lg_disable = false;
+
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        if (!(App.files.Length != 1 || File.ReadAllText(App.files[0]).Length == 0))
+        {
+            Navigation.NavigateTo("/mark");
+        }
+    }
+
+}

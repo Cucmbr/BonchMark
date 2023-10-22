@@ -1,24 +1,66 @@
-﻿@page "/"
+﻿@page "/mark"
+@inject NavigationManager Navigation
+@using BonchMark;
 
-@if(true)
-{
     <body>
-        <header>
-            <h1>BonchMark</h1>
-        </header>
-        <main>
-            <button>Benro</button>
+        <main class="mainpg">
+            <div class="status_message" style="@status_msg_style">@status_msg</div>
+            <button style="@mark_btn_style" disabled="@btn_disable" @onclick="OnButtonMark">Начать занятие</button>
         </main>
-        <footer>
-            <div class="nav_footer"></div>
-        </footer>
     </body>
-}
-else
-{
-    <LoginPage />
-}
 
 @code {
+    private bool btn_disable = false;
+    private string mark_btn_style;
+    private string status_msg_style;
+    private string status_msg;
+
+    private async void OnButtonMark()
+    {
+        string[] userData = File.ReadAllText(Path.Combine(App.folderPath, "UserData.txt")).Split(":");
+        mark_btn_style = "opacity: .5;";
+        btn_disable = true;
+        if (await App.api.Init())
+        {
+            if (await App.api.Login(userData[0], userData[1]))
+            {
+                BonchAPI.MarkStatus code = await App.api.MarkSequence();
+                switch (code)
+                {
+                    case BonchAPI.MarkStatus.OK:
+                        status_msg = "Успешно ✔️";
+                        status_msg_style = "background-color: #BAF68C; display: block";
+                        break;
+                    case BonchAPI.MarkStatus.UpdateOnly:
+                        status_msg = "Преподаватель ещё не начал занятие 🕰️";
+                        status_msg_style = "background-color: #FFDA96; display: block";
+                        break;
+                    case BonchAPI.MarkStatus.NoButton:
+                        status_msg = "Занятия ещё не начались 💤";
+                        status_msg_style = "background-color: #FFDA96; display: block";
+                        break;
+                    case BonchAPI.MarkStatus.RequestFailed:
+                        status_msg = "Ошибка! ❌";
+                        status_msg_style = "background-color: #FFC5C5; display: block";
+                        break;
+                }
+            }
+            else
+            {
+                status_msg = "Что-то пошло не так ❓";
+                status_msg_style = "background-color: #FFC5C5; display: block";
+            }
+        }
+        else
+        {
+            status_msg = "Что-то пошло не так ❓";
+            status_msg_style = "background-color: #FFC5C5; display: block";
+        }
+
+        mark_btn_style = "opacity: 1;";
+        btn_disable = false;
+
+        StateHasChanged();
+    }
 
 }
