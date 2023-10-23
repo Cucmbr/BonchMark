@@ -1,0 +1,18 @@
+﻿@page "/"
+<body>
+    @table
+</body>
+
+@code {
+    private RenderFragment table;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await App.api.InitAsync();
+        await App.api.LoginAsync("vanvanich531@gmail.com", "2MFPBNG8RHB");
+        string temp = await App.api.PullTimetableAsync();
+        table = @temp;
+    }
+
+    
+}

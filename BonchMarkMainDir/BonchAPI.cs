@@ -64,7 +64,7 @@ namespace BonchMark
             }
         }
 
-        internal async Task<string> PullTimetableAsync()
+        public async Task<string> PullTimetableAsync()
         {
             using LkRequest timetableRequest = new LkRequest("key=6118");
             using (var timetableResponse = await _httpClient.PostAsync(_httpClient.BaseAddress + "/cabinet/project/cabinet/forms/raspisanie.php", timetableRequest))
