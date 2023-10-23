@@ -24,17 +24,17 @@
     private string btn_lg_style;
     private bool btn_lg_disable;
 
-    private async void OnButtonLogin()
+    private async Task OnButtonLogin()
     {
         btn_lg_style = "opacity: .5;";
         btn_lg_disable = true;
 
-        if (!await App.api.Init())
+        if (!await App.api.InitAsync())
         {
             err_msg = "😼: \"Личный кабинет не отвечает\"";
             err_display = "display: block";
         }
-        else if (!await App.api.Login(usersEntry, paroleEntry))
+        else if (!await App.api.LoginAsync(usersEntry, paroleEntry))
         {
 
             err_msg = "😼: \"Неправильный логин или пароль\"";
@@ -48,8 +48,6 @@
 
         btn_lg_style = "opacity: 1;";
         btn_lg_disable = false;
-
-        StateHasChanged();
     }
 
     protected override void OnInitialized()

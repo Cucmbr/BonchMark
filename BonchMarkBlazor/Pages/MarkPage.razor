@@ -15,52 +15,46 @@
     private string status_msg_style;
     private string status_msg;
 
-    private async void OnButtonMark()
+    private async Task OnButtonMark()
     {
         string[] userData = File.ReadAllText(Path.Combine(App.folderPath, "UserData.txt")).Split(":");
         mark_btn_style = "opacity: .5;";
         btn_disable = true;
-        if (await App.api.Init())
-        {
-            if (await App.api.Login(userData[0], userData[1]))
-            {
-                BonchAPI.MarkStatus code = await App.api.MarkSequence();
-                switch (code)
-                {
-                    case BonchAPI.MarkStatus.OK:
-                        status_msg = "Успешно ✔️";
-                        status_msg_style = "background-color: #BAF68C; display: block";
-                        break;
-                    case BonchAPI.MarkStatus.UpdateOnly:
-                        status_msg = "Преподаватель ещё не начал занятие 🕰️";
-                        status_msg_style = "background-color: #FFDA96; display: block";
-                        break;
-                    case BonchAPI.MarkStatus.NoButton:
-                        status_msg = "Занятия ещё не начались 💤";
-                        status_msg_style = "background-color: #FFDA96; display: block";
-                        break;
-                    case BonchAPI.MarkStatus.RequestFailed:
-                        status_msg = "Ошибка! ❌";
-                        status_msg_style = "background-color: #FFC5C5; display: block";
-                        break;
-                }
-            }
-            else
-            {
-                status_msg = "Что-то пошло не так ❓";
-                status_msg_style = "background-color: #FFC5C5; display: block";
-            }
-        }
-        else
+        if (!await App.api.InitAsync())
         {
             status_msg = "Что-то пошло не так ❓";
             status_msg_style = "background-color: #FFC5C5; display: block";
         }
+        if (!await App.api.LoginAsync(userData[0], userData[1]))
+        {
+            status_msg = "Что-то пошло не так ❓";
+            status_msg_style = "background-color: #FFC5C5; display: block";
+        }
+        else
+        {
+            switch (await App.api.MarkSequenceAsync())
+            {
+                case BonchAPI.MarkStatus.OK:
+                    status_msg = "Успешно ✔️";
+                    status_msg_style = "background-color: #BAF68C; display: block";
+                    break;
+                case BonchAPI.MarkStatus.UpdateOnly:
+                    status_msg = "Преподаватель ещё не начал занятие 🕰️";
+                    status_msg_style = "background-color: #FFDA96; display: block";
+                    break;
+                case BonchAPI.MarkStatus.NoButton:
+                    status_msg = "Занятия ещё не начались 💤";
+                    status_msg_style = "background-color: #FFDA96; display: block";
+                    break;
+                case BonchAPI.MarkStatus.RequestFailed:
+                    status_msg = "Ошибка! ❌";
+                    status_msg_style = "background-color: #FFC5C5; display: block";
+                    break;
+            }            
+        }
 
         mark_btn_style = "opacity: 1;";
         btn_disable = false;
-
-        StateHasChanged();
     }
 
 }
