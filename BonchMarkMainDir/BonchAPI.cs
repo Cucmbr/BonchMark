@@ -1,5 +1,6 @@
-﻿using HtmlAgilityPack;
+﻿using AngleSharp.Html.Parser;
 using System.Net;
+using System.Text;
 
 namespace BonchMark
 {
@@ -8,7 +9,8 @@ namespace BonchMark
         private HttpClient _httpClient;
         private string _users;
         private string _parole;
-        
+        internal HtmlParser Parser;
+
         private class LkRequest : StringContent
         {
             public LkRequest(string content)
@@ -25,6 +27,8 @@ namespace BonchMark
 
         public BonchAPI()
         {
+            Parser = new HtmlParser();
+
             _httpClient = new(new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip }, true)
             {
                 BaseAddress = new Uri("https://lk.sut.ru")
@@ -64,7 +68,7 @@ namespace BonchMark
             }
         }
 
-        public async Task<string> PullTimetableAsync()
+        internal async Task<string> PullTimetableAsync()
         {
             using LkRequest timetableRequest = new LkRequest("key=6118");
             using (var timetableResponse = await _httpClient.PostAsync(_httpClient.BaseAddress + "/cabinet/project/cabinet/forms/raspisanie.php", timetableRequest))
@@ -73,15 +77,16 @@ namespace BonchMark
                 {
                     return "";
                 }
-                string text = await timetableResponse.Content.ReadAsStringAsync();
-                return text;
+                var byteResp = await timetableResponse.Content.ReadAsByteArrayAsync();
+                return Encoding.GetEncoding(1251).GetString(byteResp, 0, byteResp.Length);
             }
         }
 
         private async Task<MarkStatus> MarkAsync()
         {
-            var doc = CreateHtmlDoc(await PullTimetableAsync());
-            var openZanNode = doc.DocumentNode.SelectSingleNode("/div[@class='container-fluid']/table[@class='simple-little-table']/tbody/tr/td/span/a");
+            var doc = await Parser.ParseDocumentAsync(await PullTimetableAsync());
+            var openZanNode = doc.QuerySelector("tbody a");
+
             if (openZanNode != null)
             {
                 string openZan = openZanNode.OuterHtml;
@@ -104,13 +109,6 @@ namespace BonchMark
             }
             else
                 return MarkStatus.NoButton;
-        }
-
-        internal HtmlDocument CreateHtmlDoc(string content)
-        {
-            HtmlDocument htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(content);
-            return htmlDoc;
         }
 
         private bool InvalidResponseCheck(HttpResponseMessage message)

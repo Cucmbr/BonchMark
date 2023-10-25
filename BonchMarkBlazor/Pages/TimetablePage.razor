@@ -1,18 +1,20 @@
 ﻿@page "/"
+
 <body>
-    @table
+    <div class="timetable_day">
+        @foreach (var item in classes)
+        {
+            <div class=""></div>
+            <div class="class_name"></div>
+            <div class="class_info">
+                <div class=""></div>
+                <div></div>
+            </div>
+        }
+
+    </div>
 </body>
 
 @code {
-    private RenderFragment table;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await App.api.InitAsync();
-        await App.api.LoginAsync("vanvanich531@gmail.com", "2MFPBNG8RHB");
-        string temp = await App.api.PullTimetableAsync();
-        table = @temp;
-    }
-
-    
+    List<BonchMark.ClassInfo> classes = App.timetable.GetClasses(); 
 }

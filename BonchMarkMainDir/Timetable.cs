@@ -1,69 +1,100 @@
-﻿//using BonchMark;
-//using HtmlAgilityPack;
+﻿using AngleSharp.Html.Dom;
+using System.Linq;
+using BonchMark;
+using AngleSharp.Dom;
 
-//BonchAPI api = new BonchAPI();
-//await api.InitAsync();
-//await api.LoginAsync("vanvanich531@gmail.com", "2MFPBNG8RHB");
-//var time = await Timetable.CreateAsync(api);
+namespace BonchMark
+{
+    public class Timetable
+    {
+        private IHtmlDocument _fullTimetable;
+        private IElement _tableNode;
+        private BonchAPI _api;
 
-//Console.WriteLine(time.GetClasses());
+        private Timetable(IHtmlDocument html, BonchAPI api)
+        {
+            _fullTimetable = html;
+            _tableNode = _fullTimetable.QuerySelector("tbody");
+            _api = api;
+        }
+        public static async Task<Timetable> CreateAsync(BonchAPI api)
+        {
+            return new Timetable(api.Parser.ParseDocument(await api.PullTimetableAsync()), api);
+        }
 
-//namespace BonchMark
-//{
-//    public class Timetable
-//    {
-//        private HtmlDocument _fullTimetable;
+        public async Task Update()
+        {
+            _fullTimetable = _api.Parser.ParseDocument(await _api.PullTimetableAsync());
+        }
 
-//        private Timetable(HtmlDocument html)
-//        {
-//            _fullTimetable = html;
-//        }
-//        public static async Task<Timetable> CreateAsync(BonchAPI api)
-//        {
-//            return new Timetable(api.CreateHtmlDoc(await api.PullTimetableAsync()));
-//        }
+        public List<ClassInfo> GetClasses()
+        {
+            List<ClassInfo> classes = new List<ClassInfo>();
+            if(_tableNode != null)
+            {
+                var dateNodes = _tableNode.QuerySelectorAll("tr td[colspan] small");
+                var timeNodes = _tableNode.QuerySelectorAll("tr td small[style]");
+                var nameNodes = _tableNode.QuerySelectorAll("tr td[align] b");
+                var typeNodes = _tableNode.QuerySelectorAll("tr td[align] small");
+                var placeNodes = _tableNode.QuerySelectorAll("tr td:nth-child(4)");
+                var teacherNodes = _tableNode.QuerySelectorAll("tr td:nth-child(5)");
 
-//        public List<ClassInfo> GetClasses()
-//        {
-//            List<ClassInfo> classes = new List<ClassInfo>();
-//            HtmlNodeCollection dateNodes = _fullTimetable.DocumentNode.SelectNodes("/div[@class='container-fluid']/table[@class='simple-little-table']/tbody/tr/td[@colspan='6']/small");
-//            HtmlNodeCollection nameNodes = _fullTimetable.DocumentNode.SelectNodes("/div[@class='container-fluid']/table[@class='simple-little-table']/tbody/tr/td[not(self::td[@colspan='6'])]/b");
+                var dayInf = DayClassCount();
+                int infCtr = 0;
 
+                for(int i = 0; i < dateNodes.Length; i++)
+                {
+                    for  (int j = 0; j < dayInf[i]; j++) 
+                    {
+                        classes.Add(new ClassInfo(dateNodes[i].TextContent, timeNodes[infCtr].TextContent, nameNodes[infCtr].TextContent, typeNodes[infCtr].TextContent, placeNodes[infCtr].TextContent, teacherNodes[infCtr].TextContent));
+                        infCtr++;
+                    }
+                }
 
-//            string tbody = _fullTimetable.DocumentNode.SelectSingleNode("/div[@class='container-fluid']/table[@class='simple-little-table']/tbody").OuterHtml;
-//            string tempbody = tbody.Substring(tbody.IndexOf("tr style=\"background: #b3b3b3"), tbody.Length - tbody.TrimStart('<').IndexOf("<tr style=\"background: #b3b3b3"));
-//            tbody.TrimStart()
-//            //for (int i = 0; i < nameNodes.Count; i++)
-//            //{
-//            //    classes.Add(new ClassInfo());
-//            //}
-//            return classes;
-//        }
-//    }
+            }
 
-//    public class ClassInfo
-//    {
-//        public string Date { get; }
-//        public string Number { get; }
-//        public string Name { get; }
-//        public string Type { get; }
-//        public string Place { get; }
-//        public string Teacher { get; }
+            return classes;
+        }
 
-//        public ClassInfo(string date, string number, string name, string type, string place, string teacher)
-//        {
-//            Date = date;
-//            Number = number;
-//            Name = name;
-//            Type = type;
-//            Place = place;
-//            Teacher = teacher;
-//        }
+        private List<int> DayClassCount()
+        {
+            List<int> classNumDay = new();
+            var trs = _tableNode.QuerySelectorAll("tr");
+            int counter = 0;
+            foreach (var node in trs)
+            {
+                if (node.GetAttribute("style") == "background: #b3b3b3; !important; ")
+                {
+                    if (counter == 0) continue; 
+                    classNumDay.Add(counter);
+                    counter = 0;
+                    continue;
+                }
+                counter++;
+            }
+            if (counter != 0) classNumDay.Add(counter);
+            return classNumDay;
+        }
+    }
 
-//        public override string ToString()
-//        {
-//            return $"Date: {Date} Number: {Number} Name: {Name} Type: {Type} Place: {Place} Teacher: {Teacher}";
-//        }
-//    }
+    public class ClassInfo
+    {
+        public string Date { get; }
+        public string Time { get; }
+        public string Name { get; }
+        public string Type { get; }
+        public string Place { get; }
+        public string Teacher { get; }
 
-//}
+        public ClassInfo(string date, string time, string name, string type, string place, string teacher)
+        {
+            Date =  date;
+            Time = time;
+            Name = name;
+            Type = type;
+            Place = place;
+            Teacher = teacher;
+        }
+    }
+
+}

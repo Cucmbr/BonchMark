@@ -7,6 +7,7 @@ namespace BonchMarkBlazor
         static internal string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         static internal string[] files;
         static internal BonchAPI api = new BonchAPI();
+        static internal Timetable timetable;
 
         public App()
         {
