@@ -4,6 +4,9 @@
 	--accent-bgcolor: #FAE6C3;
 	--text-gray: #5C5C5C;
 	--gradient-colors: var(--main-color) 40%, #f7911e;
+	--lecture: #006cb7;
+	--practice: #67bd45;
+	--lab: #ed1556;
 }
 
 @font-face {
