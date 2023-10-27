@@ -15,7 +15,7 @@ namespace BonchMarkBlazor
 
             files = Directory.GetFiles(folderPath, "*.txt");
             
-            MainPage = new MainPage();
+            MainPage = new AppShell();
         }
     }
 }

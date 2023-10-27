@@ -4,6 +4,7 @@
 @using BonchMark;
 
     <body>
+        <header><h1>BenroBonch</h1></header>
         <main class="mainpg">
             <div class="status_message" style="@status_msg_style">@status_msg</div>
             <button style="@mark_btn_style" disabled="@btn_disable" @onclick="OnButtonMark">Начать занятие</button>
@@ -23,7 +24,7 @@
         btn_disable = true;
         if (!await App.api.InitAsync())
         {
-            status_msg = "Что-то пошло не так ❓";
+            status_msg = "😼: \"Личный кабинет не отвечает\"";
             status_msg_style = "background-color: #FFC5C5; display: block";
         }
         if (!await App.api.LoginAsync(userData[0], userData[1]))

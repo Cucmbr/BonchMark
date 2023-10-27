@@ -12,6 +12,14 @@
                     fonts.AddFont("FiraSans-Regular.ttf", "Fira Sans Reg");
                     fonts.AddFont("FiraSans-Bold.ttf", "Fira Sans Bold");
                 });
+            builder
+                .UseMauiApp<App>()
+                .ConfigureMauiHandlers(handlers =>
+                {
+#if ANDROID
+            handlers.AddHandler(typeof(Shell), typeof(CustomShellHandler));
+#endif
+                });
 
             builder.Services.AddMauiBlazorWebView();
 #if DEBUG

@@ -1,16 +1,22 @@
-﻿@page "/"
-
-<body>
+﻿<body>
+    <div class="week_nav">
+        <button>ПН</button>
+        <button>ВТ</button>
+        <button>СР</button>
+        <button>ЧТ</button>
+        <button>ПТ</button>
+        <button>СБ</button>
+    </div>
     <div class="timetable_day">
-        @foreach (var item in classes)
+        @for (int i = 0; i < 3; i++)
         {
             <div class="class_item">
-                <div class="class_time"></div>
-                <div class="class_inf">
-                    <div class="typebar"></div>
+                <div class="class_number">1</div>
+                <div class="card_container">
+                    <div class="class_label">Лекция | 02:28-13:37</div>
                     <div class="class_card">
-                        <div class="class_name"></div>
-                        <div class="class_place_teacher"></div>
+                        <div class="class_name">Основы бенрирования и итальянского</div>
+                        <div class="class_teacher_place">Бенро У.Х.</div>
                     </div>
                 </div>
             </div>
@@ -20,5 +26,5 @@
 </body>
 
 @code {
-    List<BonchMark.ClassInfo> classes = App.timetable.GetClasses(); 
+    //List<BonchMark.ClassInfo> classes = App.timetable.GetClasses(); 
 }

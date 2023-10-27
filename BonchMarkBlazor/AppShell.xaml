@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="BonchMarkBlazor.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BonchMarkBlazor"
+    xmlns:xpages="clr-namespace:BonchMarkBlazor.XamlPages"
+    Shell.TabBarBackgroundColor="#FAE6C3"
+    Shell.TabBarForegroundColor="#FF000000"
+    Shell.TabBarTitleColor="#f5841f"
+    Shell.TabBarUnselectedColor="#5C5C5C">
+
+    <TabBar>
+        <Tab Icon="house.png">
+            <ShellContent ContentTemplate="{DataTemplate xpages:Main}" />
+        </Tab>
+        <Tab Icon="clock.png">
+            <ShellContent ContentTemplate="{DataTemplate xpages:Timetable}" />
+        </Tab>
+    </TabBar>
+
+
+</Shell>

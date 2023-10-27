@@ -9,10 +9,6 @@
     display: none;
 }
 
-main {
-    align-items: center;
-}
-
 .login_block {
     border-radius: 1rem;
     background: var(--accent-bgcolor);

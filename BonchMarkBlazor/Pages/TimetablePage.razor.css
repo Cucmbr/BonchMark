@@ -1,5 +1,61 @@
-﻿<h3>TimetablePage.razor</h3>
+﻿.week_nav {
 
-@code {
+}
 
+.timetable_day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2rem 0 1rem;
+}
+
+.class_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.class_number {
+    background-color: var(--lecture);
+    color: var(--main-bgcolor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    font-family: 'Fira Sans Bold';
+    font-size: 1.1rem;
+}
+
+.card_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.class_label {
+    background-color: var(--lecture);
+    width: fit-content;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0.2rem 1rem;
+    color: var(--main-bgcolor);
+}
+
+.class_card {
+    position: relative;
+    background-color: var(--accent-bgcolor);
+    padding: 1rem;
+    border-radius: 0 1rem 1rem 1rem;
+    color: #282828;
+}
+
+.class_name {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.class_teacher_place {
+    margin-top: 0.5rem;
 }
