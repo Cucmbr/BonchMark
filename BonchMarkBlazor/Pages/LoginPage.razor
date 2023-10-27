@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject NavigationManager Navigation
+@using Microsoft.Maui.Controls
 
 <body>
     <main class="mainpg">
@@ -55,6 +56,12 @@
     {
         if (!(App.files.Length != 1 || File.ReadAllText(App.files[0]).Length == 0))
         {
+            Tab tab = new Tab
+            {
+                Icon = "clock.svg",
+            };
+            tab.Items.Add(new ShellContent() { Content = new BonchMarkBlazor.XamlPages.Timetable() });
+            AppShell.tabBar.Items.Add(tab);
             Navigation.NavigateTo("/mark");
         }
     }
