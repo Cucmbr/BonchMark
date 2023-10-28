@@ -10,13 +10,16 @@
     Shell.TabBarTitleColor="#f5841f"
     Shell.TabBarUnselectedColor="#5C5C5C">
 
-    <TabBar x:Name="ShellTabBar">
+    <TabBar x:Name="AppShellBar">
         <Tab Icon="house.png">
-            <ShellContent ContentTemplate="{DataTemplate xpages:Main}" />
+            <ShellContent ContentTemplate="{DataTemplate xpages:Main}" Icon="house.png" />
         </Tab>
-        <!--<Tab Icon="clock.png" x:Name="TimetableTab">
-            <ShellContent ContentTemplate="{DataTemplate xpages:Timetable}" />
-        </Tab>-->
+        <Tab Icon="clock.png" 
+                x:Name="HideElement">
+            <ShellContent
+                ContentTemplate="{DataTemplate xpages:Timetable.Monday}"
+                IsVisible="False" />
+        </Tab>
     </TabBar>
 
 

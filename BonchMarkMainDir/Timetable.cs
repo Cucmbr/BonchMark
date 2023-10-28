@@ -27,9 +27,9 @@ namespace BonchMark
             _fullTimetable = _api.Parser.ParseDocument(await _api.PullTimetableAsync());
         }
 
-        public List<ClassInfo> GetClasses()
+        public List<DayInfo> GetWeek()
         {
-            List<ClassInfo> classes = new List<ClassInfo>();
+            List<DayInfo> week = new List<DayInfo>();
             if(_tableNode != null)
             {
                 var dateNodes = _tableNode.QuerySelectorAll("tr td[colspan] small");
@@ -44,16 +44,26 @@ namespace BonchMark
 
                 for(int i = 0; i < dateNodes.Length; i++)
                 {
+                    var classes = new List<ClassInfo>();
                     for  (int j = 0; j < dayInf[i]; j++) 
                     {
-                        classes.Add(new ClassInfo(dateNodes[i].TextContent, timeNodes[infCtr].TextContent, nameNodes[infCtr].TextContent, typeNodes[infCtr].TextContent, placeNodes[infCtr].TextContent, teacherNodes[infCtr].TextContent));
+                        classes.Add(new ClassInfo(timeNodes[infCtr].TextContent, nameNodes[infCtr].TextContent, typeNodes[infCtr].TextContent, placeNodes[infCtr].TextContent, teacherNodes[infCtr].TextContent));
                         infCtr++;
                     }
+                    week.Add(new DayInfo { Classes = classes, Date = ParseDate(dateNodes[i].TextContent) });
                 }
 
             }
 
-            return classes;
+            return week;
+        }
+
+        internal DateTime ParseDate(string Date)
+        {
+            if (DateTime.TryParse(Date, out var date))
+                return date;
+            else
+                return DateTime.MinValue;
         }
 
         private List<int> DayClassCount()
@@ -79,22 +89,26 @@ namespace BonchMark
 
     public class ClassInfo
     {
-        public string Date { get; }
         public string Time { get; }
         public string Name { get; }
         public string Type { get; }
         public string Place { get; }
         public string Teacher { get; }
 
-        public ClassInfo(string date, string time, string name, string type, string place, string teacher)
+        public ClassInfo(string time, string name, string type, string place, string teacher)
         {
-            Date =  date;
             Time = time;
             Name = name;
             Type = type;
             Place = place;
             Teacher = teacher;
         }
+    }
+
+    public class DayInfo
+    {
+        public DateTime Date { get; internal set; }
+        public List<ClassInfo> Classes { get; internal set; }
     }
 
 }

@@ -11,10 +11,3 @@
 		</LayoutView>
 	</NotFound>
 </Router>
-
-@code{
-	protected override async Task OnInitializedAsync()
-	{
-		App.timetable = await Timetable.CreateAsync(App.api);
-	}
-}

@@ -8,6 +8,7 @@ namespace BonchMarkBlazor
         static internal string[] files;
         static internal BonchAPI api = new BonchAPI();
         static internal Timetable timetable;
+        static internal List<DayInfo> week;
 
         public App()
         {

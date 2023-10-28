@@ -1,0 +1,25 @@
+﻿<div class="timetable_day">
+    @for (int i = 0; i < day.Classes.Count; i++)
+    {
+        <div class="class_item">
+            <div class="class_number">1</div>
+            <div class="card_container">
+                <div class="class_label">Лекция | 02:28-13:37</div>
+                <div class="class_card">
+                    <div class="class_name">Основы бенрирования и итальянского</div>
+                    <div class="class_teacher_place">Бенро У.Х.</div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+@code {
+    private DayInfo day = BonchMarkBlazor.XamlPages.Timetable.Thursday;
+
+    protected override void OnInitialized()
+    {
+
+    }
+}

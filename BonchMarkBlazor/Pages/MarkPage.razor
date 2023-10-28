@@ -59,4 +59,10 @@
         btn_disable = false;
     }
 
+    protected async override Task OnInitializedAsync()
+    {
+        ((AppShell)App.Current.MainPage).ShowTab();
+        App.timetable = await Timetable.CreateAsync(App.api);
+        App.week = App.timetable.GetWeek();
+    }
 }

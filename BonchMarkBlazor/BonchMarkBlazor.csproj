@@ -58,6 +58,7 @@
 
     <ItemGroup>
       <Compile Remove="Pages\LoginPage.raor.cs" />
+      <Compile Remove="XamlPages\WeekPages\Monday - Копировать %283%29.xaml.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -66,8 +67,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <MauiXaml Remove="XamlPages\WeekPages\Monday - Копировать %283%29.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Remove="Pages\NewFile1.txt" />
-      <None Remove="Pages\TimetablePage.razor.css" />
       <None Remove="penis.png" />
       <None Remove="Resources\AppIcon\appiconfg.svg" />
       <None Remove="Resources\Fonts\FiraSans-Bold.ttf" />
@@ -75,10 +79,6 @@
       <None Remove="Resources\Images\clock.svg" />
       <None Remove="Resources\Images\house.svg" />
       <None Remove="Resources\Splash\Splash.svg" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="Pages\TimetablePage.razor.css" />
     </ItemGroup>
 
     <ItemGroup>
@@ -95,6 +95,24 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="XamlPages\WeekPages\Friday.xaml.cs">
+        <DependentUpon>Friday.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="XamlPages\WeekPages\Saturday.xaml.cs">
+        <DependentUpon>Saturday.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="XamlPages\WeekPages\Thursday.xaml.cs">
+        <DependentUpon>Thursday.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="XamlPages\WeekPages\Wednesday.xaml.cs">
+        <DependentUpon>Wednesday.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="XamlPages\WeekPages\Tuesday.xaml.cs">
+        <DependentUpon>Tuesday.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
       <MauiXaml Update="AppShell.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
@@ -102,6 +120,24 @@
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="XamlPages\Timetable.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="XamlPages\WeekPages\Friday.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="XamlPages\WeekPages\Saturday.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="XamlPages\WeekPages\Thursday.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="XamlPages\WeekPages\Wednesday.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="XamlPages\WeekPages\Tuesday.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
+      <MauiXaml Update="XamlPages\WeekPages\Monday.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
     </ItemGroup>
