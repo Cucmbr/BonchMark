@@ -1,5 +1,5 @@
 ﻿<div class="timetable_day">
-    @for (int i = 0; i < 3; i++)
+    @for (int i = 0; i < day.Classes.Count; i++)
     {
         <div class="class_item">
             <div class="class_number">1</div>
@@ -17,9 +17,4 @@
 
 @code {
     private DayInfo day = App.Friday;
-
-    protected override void OnInitialized()
-    {
-
-    }
 }

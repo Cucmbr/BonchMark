@@ -10,12 +10,14 @@ namespace BonchMarkBlazor
         static internal Timetable timetable;
         static internal List<DayInfo> week;
 
-        internal static DayInfo Monday { get; private set; }
-        internal static DayInfo Tuesday { get; private set; }
-        internal static DayInfo Wednesday { get; private set; }
-        internal static DayInfo Thursday { get; private set; }
-        internal static DayInfo Friday { get; private set; }
-        internal static DayInfo Saturday { get; private set; }
+        static internal string[] userData;
+
+        internal static DayInfo Monday { get; set; }
+        internal static DayInfo Tuesday { get; set; }
+        internal static DayInfo Wednesday { get; set; }
+        internal static DayInfo Thursday { get; set; }
+        internal static DayInfo Friday { get; set; }
+        internal static DayInfo Saturday { get; set; }
 
         public App()
         {
@@ -24,6 +26,9 @@ namespace BonchMarkBlazor
             files = Directory.GetFiles(folderPath, "*.txt");
             
             MainPage = new AppShell();
+
+            if (File.Exists(Path.Combine(folderPath, "UserData.txt")))
+                userData = File.ReadAllText(Path.Combine(folderPath, "UserData.txt")).Split(":");
         }
     }
 }

@@ -60,10 +60,7 @@ namespace BonchMark
 
         internal DateTime ParseDate(string Date)
         {
-            if (DateTime.TryParse(Date, out var date))
-                return date;
-            else
-                return DateTime.MinValue;
+            return DateTime.ParseExact(Date, "dd.MM.yyyy", null);
         }
 
         private List<int> DayClassCount()

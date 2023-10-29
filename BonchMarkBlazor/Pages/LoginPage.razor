@@ -44,6 +44,7 @@
         else
         {
             File.WriteAllText(Path.Combine(App.folderPath, "UserData.txt"), usersEntry + ":" + paroleEntry);
+            App.userData = File.ReadAllText(Path.Combine(App.folderPath, "UserData.txt")).Split(":");
             Navigation.NavigateTo("/mark");
         }
 

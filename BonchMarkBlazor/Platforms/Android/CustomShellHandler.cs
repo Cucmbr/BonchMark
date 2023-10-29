@@ -9,5 +9,10 @@ namespace BonchMarkBlazor
         {
             return new Platforms.Android.CustomShellBottomNavViewAppearanceTracker(this, shellItem.CurrentItem);
         }
+
+        protected override IShellTabLayoutAppearanceTracker CreateTabLayoutAppearanceTracker(ShellSection shellSection)
+        {
+            return new Platforms.Android.CustomShellTabLayoutAppearanceTracker(this);
+        }
     }
 }

@@ -6,30 +6,26 @@
     xmlns:local="clr-namespace:BonchMarkBlazor"
     xmlns:xpages="clr-namespace:BonchMarkBlazor.XamlPages"
     xmlns:xwpages="clr-namespace:BonchMarkBlazor.XamlPages.WeekPages"
+    Shell.NavBarIsVisible="False"
     Shell.TabBarBackgroundColor="#FAE6C3"
     Shell.TabBarForegroundColor="#FF000000"
     Shell.TabBarTitleColor="#f5841f"
     Shell.TabBarUnselectedColor="#5C5C5C">
 
-    <TabBar x:Name="AppShellBar">
+    <TabBar>
         <Tab Icon="house.png">
             <ShellContent ContentTemplate="{DataTemplate xpages:Main}" Icon="house.png" />
         </Tab>
-        <Tab Icon="clock.png"
-             x:Name="HideElement"
-             IsVisible="True">
-            <ShellContent
-                ContentTemplate="{DataTemplate xwpages:Monday}"/>
-            <ShellContent
-                ContentTemplate="{DataTemplate xwpages:Tuesday}"/>
-            <ShellContent
-                ContentTemplate="{DataTemplate xwpages:Wednesday}"/>
-            <ShellContent
-                ContentTemplate="{DataTemplate xwpages:Thursday}"/>
-            <ShellContent
-                ContentTemplate="{DataTemplate xwpages:Friday}"/>
-            <ShellContent
-                ContentTemplate="{DataTemplate xwpages:Saturday}"/>
+        <Tab
+            x:Name="HideElement"
+            Icon="clock.png"
+            IsVisible="False">
+            <ShellContent ContentTemplate="{DataTemplate xwpages:Monday}" />
+            <ShellContent ContentTemplate="{DataTemplate xwpages:Tuesday}" />
+            <ShellContent ContentTemplate="{DataTemplate xwpages:Wednesday}" />
+            <ShellContent ContentTemplate="{DataTemplate xwpages:Thursday}" />
+            <ShellContent ContentTemplate="{DataTemplate xwpages:Friday}" />
+            <ShellContent ContentTemplate="{DataTemplate xwpages:Saturday}" />
         </Tab>
     </TabBar>
 

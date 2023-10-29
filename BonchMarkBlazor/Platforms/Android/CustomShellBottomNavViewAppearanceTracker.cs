@@ -1,4 +1,5 @@
 ﻿using Google.Android.Material.BottomNavigation;
+using Google.Android.Material.Tabs;
 using Microsoft.Maui.Controls.Platform.Compatibility;
 
 namespace BonchMarkBlazor.Platforms.Android
@@ -21,6 +22,20 @@ namespace BonchMarkBlazor.Platforms.Android
             bottomView.LabelVisibilityMode = LabelVisibilityMode.LabelVisibilityUnlabeled;
 
 
+        }
+    }
+
+    class CustomShellTabLayoutAppearanceTracker : ShellTabLayoutAppearanceTracker
+    {
+        private readonly IShellContext shellContext;
+
+        public CustomShellTabLayoutAppearanceTracker(IShellContext shellContext) : base(shellContext)
+        {
+        }
+
+        public override void SetAppearance(TabLayout tabLayout, ShellAppearance appearance)
+        {
+            base.SetAppearance(tabLayout, appearance);
         }
     }
 }
