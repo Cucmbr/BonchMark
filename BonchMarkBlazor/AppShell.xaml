@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BonchMarkBlazor"
     xmlns:xpages="clr-namespace:BonchMarkBlazor.XamlPages"
+    xmlns:xwpages="clr-namespace:BonchMarkBlazor.XamlPages.WeekPages"
     Shell.TabBarBackgroundColor="#FAE6C3"
     Shell.TabBarForegroundColor="#FF000000"
     Shell.TabBarTitleColor="#f5841f"
@@ -14,11 +15,21 @@
         <Tab Icon="house.png">
             <ShellContent ContentTemplate="{DataTemplate xpages:Main}" Icon="house.png" />
         </Tab>
-        <Tab Icon="clock.png" 
-                x:Name="HideElement">
+        <Tab Icon="clock.png"
+             x:Name="HideElement"
+             IsVisible="True">
             <ShellContent
-                ContentTemplate="{DataTemplate xpages:Timetable.Monday}"
-                IsVisible="False" />
+                ContentTemplate="{DataTemplate xwpages:Monday}"/>
+            <ShellContent
+                ContentTemplate="{DataTemplate xwpages:Tuesday}"/>
+            <ShellContent
+                ContentTemplate="{DataTemplate xwpages:Wednesday}"/>
+            <ShellContent
+                ContentTemplate="{DataTemplate xwpages:Thursday}"/>
+            <ShellContent
+                ContentTemplate="{DataTemplate xwpages:Friday}"/>
+            <ShellContent
+                ContentTemplate="{DataTemplate xwpages:Saturday}"/>
         </Tab>
     </TabBar>
 

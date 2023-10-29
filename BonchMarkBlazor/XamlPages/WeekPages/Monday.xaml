@@ -3,11 +3,15 @@
     x:Class="BonchMarkBlazor.XamlPages.WeekPages.Monday"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Monday">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    xmlns:pages="clr-namespace:BonchMarkBlazor.Pages.WeekPages">
+
+    <BlazorWebView HostPage="wwwroot/index.html">
+        <BlazorWebView.RootComponents>
+            <RootComponent
+                x:Name="MainRoot"
+                ComponentType="{x:Type pages:Monday}"
+                Selector="#app" />
+        </BlazorWebView.RootComponents>
+    </BlazorWebView>
+
 </ContentPage>

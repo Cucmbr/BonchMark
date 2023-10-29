@@ -119,9 +119,6 @@
       <MauiXaml Update="XamlPages\Main.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
-      <MauiXaml Update="XamlPages\Timetable.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </MauiXaml>
       <MauiXaml Update="XamlPages\WeekPages\Friday.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>

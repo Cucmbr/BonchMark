@@ -1,8 +1,8 @@
 namespace BonchMarkBlazor.XamlPages.WeekPages;
 
-public partial class Monday : ContentPage
+public partial class Thursday : ContentPage
 {
-	public Monday()
+	public Thursday()
 	{
 		InitializeComponent();
 	}

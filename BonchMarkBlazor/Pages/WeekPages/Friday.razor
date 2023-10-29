@@ -1,5 +1,5 @@
 ﻿<div class="timetable_day">
-    @for (int i = 0; i < day.Classes.Count; i++)
+    @for (int i = 0; i < 3; i++)
     {
         <div class="class_item">
             <div class="class_number">1</div>
@@ -16,7 +16,7 @@
 </div>
 
 @code {
-    private DayInfo day = BonchMarkBlazor.XamlPages.Timetable.Friday;
+    private DayInfo day = App.Friday;
 
     protected override void OnInitialized()
     {
