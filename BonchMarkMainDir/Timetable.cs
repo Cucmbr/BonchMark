@@ -47,7 +47,7 @@ namespace BonchMark
                     var classes = new List<ClassInfo>();
                     for  (int j = 0; j < dayInf[i]; j++) 
                     {
-                        classes.Add(new ClassInfo(timeNodes[infCtr].TextContent, nameNodes[infCtr].TextContent, typeNodes[infCtr].TextContent, placeNodes[infCtr].TextContent, teacherNodes[infCtr].TextContent));
+                        classes.Add(new ClassInfo(timeNodes[infCtr].TextContent.Split(" "), nameNodes[infCtr].TextContent, typeNodes[infCtr].TextContent.Split("  "), placeNodes[infCtr].TextContent, teacherNodes[infCtr].TextContent));
                         infCtr++;
                     }
                     week.Add(new DayInfo { Classes = classes, Date = ParseDate(dateNodes[i].TextContent) });
@@ -86,17 +86,17 @@ namespace BonchMark
 
     public class ClassInfo
     {
-        public string Time { get; }
+        public string[] Time { get; }
         public string Name { get; }
-        public string Type { get; }
+        public string[] Type { get; }
         public string Place { get; }
         public string Teacher { get; }
 
-        public ClassInfo(string time, string name, string type, string place, string teacher)
+        public ClassInfo(string[] time, string name, string[] type, string place, string teacher)
         {
-            Time = time;
+            Time = time.Length == 2 ? new string[] { time[0], time[1].Substring(time[1].IndexOf("(") + 1, time[1].IndexOf(")") - time[1].IndexOf("(") - 1) } : new string[] {"ФЗ", time[0] };
             Name = name;
-            Type = type;
+            Type = type.Length == 2 ? type : new string[] { type[0], "" };
             Place = place;
             Teacher = teacher;
         }

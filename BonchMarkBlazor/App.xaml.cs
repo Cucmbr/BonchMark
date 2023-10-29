@@ -25,7 +25,7 @@ namespace BonchMarkBlazor
 
             files = Directory.GetFiles(folderPath, "*.txt");
             
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new MainPage());
 
             if (File.Exists(Path.Combine(folderPath, "UserData.txt")))
                 userData = File.ReadAllText(Path.Combine(folderPath, "UserData.txt")).Split(":");

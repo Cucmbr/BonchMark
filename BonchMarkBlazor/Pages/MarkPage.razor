@@ -8,6 +8,7 @@
         <main class="mainpg">
             <div class="status_message" style="@status_msg_style">@status_msg</div>
             <button style="@mark_btn_style" disabled="@btn_disable" @onclick="OnButtonMark">Начать занятие</button>
+
         </main>
     </body>
 
@@ -60,8 +61,6 @@
 
     protected async override Task OnInitializedAsync()
     {
-        ((AppShell)App.Current.MainPage).ShowTab();
-
         await App.api.InitAsync();
         await App.api.LoginAsync(App.userData[0], App.userData[1]);
         App.timetable = await Timetable.CreateAsync(App.api);

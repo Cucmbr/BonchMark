@@ -4,9 +4,7 @@
 	--accent-bgcolor: #FAE6C3;
 	--text-gray: #5C5C5C;
 	--gradient-colors: var(--main-color) 40%, #f7911e;
-	--lecture: #006cb7;
-	--practice: #67bd45;
-	--lab: #ed1556;
+	--inactive-color: #301f19;
 }
 
 @font-face {
@@ -18,6 +16,7 @@
 	src: url('FiraSans-Bold.ttf');
 }
 
+/*General*/
 * {
 	-webkit-user-drag: none;
 	user-select: none;
@@ -79,5 +78,108 @@ button {
 	}
 
 #app {
+	height: 92.5%;
+}
+
+/*****************/
+/*TabBar*/
+/*****************/
+.bot_nav_bar {
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 8%;
+	background-color: var(--accent-bgcolor);
+}
+	.btn_timetable svg {
+		fill: var(--inactive-color);
+		transition: 0.1s linear;
+	}
+		.btn_timetable svg:active {
+			fill: var(--main-color);
+			transform: scale(0.8);
+		}
+	.bot_nav_bar div{
+		display: flex;
+		align-items: center;
+		width: 2rem;
+		height: 2rem;
+	}
+
+/*****************/
+/*Timetable style*/
+/*****************/
+.timetable_day {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	margin: 0 0.5rem;
+}
+
+.class_item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	gap: 0.5rem;
+	margin: 1rem 0;
+}
+
+.class_number {
+	color: var(--main-bgcolor);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.3rem;
+	width: 2rem;
+	border-radius: 0.5rem;
+	font-family: 'Fira Sans Bold';
+	font-size: 1.1rem;
+}
+
+.card_container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	
+}
+.class_upper_card {
+	display: flex;
+	flex-direction: row;
+	gap: 4rem;
+}
+
+.class_label {
+	background-color: var(--lecture);
+	width: fit-content;
+	border-radius: 0.5rem 0.5rem 0 0;
+	padding: 0.2rem 1rem;
+	color: var(--main-bgcolor);
+}
+
+.class_card {
+	position: relative;
+	background-color: var(--accent-bgcolor);
+	padding: 1rem;
+	border-radius: 0 1rem 1rem 1rem;
+	color: #282828;
+}
+
+.class_name {
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.class_teacher_place {
+	margin-top: 0.5rem;
+}
+
+.status_message_dayoff {
+	width: 100%;
 	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

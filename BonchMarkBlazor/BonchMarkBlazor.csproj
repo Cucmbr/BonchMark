@@ -77,13 +77,11 @@
       <None Remove="Resources\Fonts\FiraSans-Bold.ttf" />
       <None Remove="Resources\Fonts\FiraSans-Regular.ttf" />
       <None Remove="Resources\Images\clock.svg" />
-      <None Remove="Resources\Images\house.svg" />
       <None Remove="Resources\Splash\Splash.svg" />
     </ItemGroup>
 
     <ItemGroup>
       <MauiImage Include="Resources\Images\clock.svg" />
-      <MauiImage Include="Resources\Images\house.svg" />
     </ItemGroup>
 
     <ItemGroup>
@@ -95,6 +93,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="MainPage.xaml.cs">
+        <DependentUpon>MainPage.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="TimetablePage.xaml.cs">
+        <DependentUpon>TimetablePage.xaml</DependentUpon>
+      </Compile>
       <Compile Update="XamlPages\WeekPages\Friday.xaml.cs">
         <DependentUpon>Friday.xaml</DependentUpon>
       </Compile>
@@ -113,10 +117,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiXaml Update="AppShell.xaml">
+      <MauiXaml Update="MainPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
-      <MauiXaml Update="XamlPages\Main.xaml">
+      <MauiXaml Update="TimetablePage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
       <MauiXaml Update="XamlPages\WeekPages\Friday.xaml">

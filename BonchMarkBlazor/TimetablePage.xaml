@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="BonchMarkBlazor.TimetablePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:BonchMarkBlazor.Pages.WeekPages"
+    Background="#FAF0DE"
+    SelectedItem="2">
+
+    <NavigationPage.TitleView>
+        <Label
+            x:Name="label"
+            Margin="0,10,0,0"
+            FontAttributes="Bold"
+            FontFamily="Fira Sans Reg"
+            FontSize="25"
+            Text="Эта менюшка отъебана во все щели"
+            TextColor="#FAF0DE" />
+    </NavigationPage.TitleView>
+    <ContentPage Title="ПН">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type pages:Monday}" Selector="#app" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>
+    <ContentPage Title="ВТ">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type pages:Tuesday}" Selector="#app" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>
+    <ContentPage Title="СР">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type pages:Wednesday}" Selector="#app" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>
+    <ContentPage Title="ЧТ">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type pages:Thursday}" Selector="#app" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>
+    <ContentPage Title="ПТ">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type pages:Friday}" Selector="#app" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>
+    <ContentPage Title="СБ">
+        <BlazorWebView HostPage="wwwroot/index.html">
+            <BlazorWebView.RootComponents>
+                <RootComponent ComponentType="{x:Type pages:Saturday}" Selector="#app" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+    </ContentPage>
+</TabbedPage>
