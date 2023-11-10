@@ -72,12 +72,17 @@
 
     <ItemGroup>
       <None Remove="Pages\NewFile1.txt" />
+      <None Remove="Pages\Timetable.razor.css" />
       <None Remove="penis.png" />
       <None Remove="Resources\AppIcon\appiconfg.svg" />
       <None Remove="Resources\Fonts\FiraSans-Bold.ttf" />
       <None Remove="Resources\Fonts\FiraSans-Regular.ttf" />
       <None Remove="Resources\Images\clock.svg" />
       <None Remove="Resources\Splash\Splash.svg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Pages\Timetable.razor.css" />
     </ItemGroup>
 
     <ItemGroup>

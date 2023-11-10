@@ -30,12 +30,12 @@
         btn_lg_style = "opacity: .5;";
         btn_lg_disable = true;
 
-        if (!await App.api.InitAsync())
+        if (!await App.Api.InitAsync())
         {
             err_msg = "😼: \"Личный кабинет не отвечает\"";
             err_display = "display: block";
         }
-        else if (!await App.api.LoginAsync(usersEntry, paroleEntry))
+        else if (!await App.Api.LoginAsync(usersEntry, paroleEntry))
         {
 
             err_msg = "😼: \"Неправильный логин или пароль\"";
@@ -43,8 +43,8 @@
         }
         else
         {
-            File.WriteAllText(Path.Combine(App.folderPath, "UserData.txt"), usersEntry + ":" + paroleEntry);
-            App.userData = File.ReadAllText(Path.Combine(App.folderPath, "UserData.txt")).Split(":");
+            File.WriteAllText(Path.Combine(App.FolderPath, "UserData.txt"), usersEntry + ":" + paroleEntry);
+            App.userData = File.ReadAllText(Path.Combine(App.FolderPath, "UserData.txt")).Split(":");
             Navigation.NavigateTo("/mark");
         }
 
@@ -54,7 +54,7 @@
 
     protected override void OnInitialized()
     {
-        if (!(App.files.Length != 1 || File.ReadAllText(App.files[0]).Length == 0))
+        if (!(App.Files.Length != 1 || File.ReadAllText(App.Files[0]).Length == 0))
         {
             Navigation.NavigateTo("/mark");
         }

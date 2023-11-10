@@ -1,0 +1,48 @@
+﻿@page "/timetable"
+@inject NavigationManager Navigation
+
+<body>
+    <main>
+        <div class="timetable_container">
+            @foreach (var day in App.Week)
+            {
+                <div class="timetable_day">
+                    @for (int i = 0; i < day.Classes.Count; i++)
+                    {
+                        ChangeColor(day.Classes[i]);
+                        <div class="class_item">
+                            <div class="class_number" style="@color_style">@day.Classes[i].Time[0]</div>
+                            <div class="card_container">
+                                <div class="class_label" style="@color_style">@day.Classes[i].Type[0] | @day.Classes[i].Time[1]</div>
+                                <div class="class_card">
+                                    <div class="class_name">@day.Classes[i].Name</div>
+                                    <div class="class_teacher_place">@day.Classes[i].Teacher <b>@day.Classes[i].Place</b></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </main>
+</body>
+
+@code {
+    private string color_style;
+
+    private void ChangeColor(ClassInfo classInfo)
+    {
+        switch (classInfo.Type[0])
+        {
+            case "Лекция":
+                color_style = "background-color: #006cb7";
+                break;
+            case "Практические занятия":
+                color_style = "background-color: #67bd45;";
+                break;
+            case "Лабораторная работа":
+                color_style = "background-color: #ed1556";
+                break;
+        }
+    }
+}

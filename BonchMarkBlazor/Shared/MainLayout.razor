@@ -10,8 +10,37 @@
 }
 
 @code {
-	private async void OnButtonTimetable()
-	{
-		await App.Current.MainPage.Navigation.PushAsync(new TimetablePage(), false);
+    private async Task OnButtonTimetable()
+    {
+        if (await App.Timetabling)
+        {
+
+            foreach (var day in App.Week)
+            {
+                switch (day.Date.DayOfWeek)
+                {
+                    case DayOfWeek.Monday:
+                        App.Monday = day;
+                        break;
+                    case DayOfWeek.Tuesday:
+                        App.Tuesday = day;
+                        break;
+                    case DayOfWeek.Wednesday:
+                        App.Wednesday = day;
+                        break;
+                    case DayOfWeek.Thursday:
+                        App.Thursday = day;
+                        break;
+                    case DayOfWeek.Friday:
+                        App.Friday = day;
+                        break;
+                    case DayOfWeek.Saturday:
+                        App.Saturday = day;
+                        break;
+                }
+            }
+
+            Navigation.NavigateTo("/timetable");
+        }
 	}
 }

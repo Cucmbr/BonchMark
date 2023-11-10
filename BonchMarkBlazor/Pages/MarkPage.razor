@@ -22,19 +22,14 @@
     {
         mark_btn_style = "opacity: .5;";
         btn_disable = true;
-        if (!await App.api.InitAsync())
+        if (!await App.Starting)
         {
             status_msg = "😼: \"Личный кабинет не отвечает\"";
             status_msg_style = "background-color: #FFC5C5; display: block";
         }
-        if (!await App.api.LoginAsync(App.userData[0], App.userData[1]))
-        {
-            status_msg = "Что-то пошло не так ❓";
-            status_msg_style = "background-color: #FFC5C5; display: block";
-        }
         else
         {
-            switch (await App.api.MarkSequenceAsync())
+            switch (await App.Marking)
             {
                 case BonchAPI.MarkStatus.OK:
                     status_msg = "Успешно ✔️";
@@ -57,38 +52,5 @@
 
         mark_btn_style = "opacity: 1;";
         btn_disable = false;
-    }
-
-    protected async override Task OnInitializedAsync()
-    {
-        await App.api.InitAsync();
-        await App.api.LoginAsync(App.userData[0], App.userData[1]);
-        App.timetable = await Timetable.CreateAsync(App.api);
-        App.week = App.timetable.GetWeek();
-
-        foreach (var day in App.week)
-        {
-            switch (day.Date.DayOfWeek)
-            {
-                case DayOfWeek.Monday:
-                    App.Monday = day;
-                    break;
-                case DayOfWeek.Tuesday:
-                    App.Tuesday = day;
-                    break;
-                case DayOfWeek.Wednesday:
-                    App.Wednesday = day;
-                    break;
-                case DayOfWeek.Thursday:
-                    App.Thursday = day;
-                    break;
-                case DayOfWeek.Friday:
-                    App.Friday = day;
-                    break;
-                case DayOfWeek.Saturday:
-                    App.Saturday = day;
-                    break;
-            }
-        }
     }
 }

@@ -6,7 +6,7 @@ public partial class TimetablePage : TabbedPage
 	{
 		InitializeComponent();
 
-		label.Text = $"{App.week[0].Date.Day}.{App.week[0].Date.Month} - {App.week[App.week.Count - 1].Date.Day}.{App.week[App.week.Count - 1].Date.Month}";
+		label.Text = $"{App.Week[0].Date.Day}.{App.Week[0].Date.Month} - {App.Week[App.Week.Count - 1].Date.Day}.{App.Week[App.Week.Count - 1].Date.Month}";
 
 		switch (DateTime.Today.DayOfWeek)
 		{
