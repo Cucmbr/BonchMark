@@ -12,28 +12,34 @@
         </div>
         <div class="timetable_container">
                 <div class="timetable_day">
-                @if (App.Monday != null)
-                {
-                    for (int i = 0; i < App.Monday.Classes.Count; i++)
+                    @if (App.Monday != null)
                     {
-                        ChangeColor(App.Monday.Classes[i]);
-                        <div class="class_item">
-                            <div class="class_number" style="@color_style">@App.Monday.Classes[i].Time[0]</div>
-                            <div class="card_container">
-                                <div class="class_label" style="@color_style">@App.Monday.Classes[i].Type[0] | @App.Monday.Classes[i].Time[1]</div>
-                                <div class="class_card">
-                                    <div class="class_name">@App.Monday.Classes[i].Name</div>
-                                    <div class="class_teacher_place">@App.Monday.Classes[i].Teacher <b>@App.Monday.Classes[i].Place</b></div>
+                        for (int i = 0; i < App.Monday.Classes.Count; i++)
+                        {
+                            ChangeColor(App.Monday.Classes[i]);
+                            <div class="class_item">
+                                <div class="class_number" style="@color_style">@App.Monday.Classes[i].Time[0]</div>
+                                <div class="card_container">
+                                    <div class="class_label" style="@color_style">@App.Monday.Classes[i].Type[0] | @App.Monday.Classes[i].Time[1]</div>
+                                    <div class="class_card">
+                                        <div class="class_name">@App.Monday.Classes[i].Name</div>
+                                        <div class="class_teacher_place">@App.Monday.Classes[i].Teacher <b>@App.Monday.Classes[i].Place</b></div>
+                                    </div>
                                 </div>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="status_message_dayoff">
+                            <div class="status_message" style="display: block;">Пар сегодня нет 😎</div>
                         </div>
                     }
-                }
-        </div>
+                </div>
                 <div class="timetable_day">
                     @if(App.Tuesday != null)
                     {
-                        @for (int i = 0; i < App.Tuesday.Classes.Count; i++)
+                        for (int i = 0; i < App.Tuesday.Classes.Count; i++)
                         {
                             ChangeColor(App.Tuesday.Classes[i]);
                             <div class="class_item">
@@ -48,69 +54,111 @@
                             </div>
                         }
                     }
-                </div>
-                <div class="timetable_day">
-                    @for (int i = 0; i < App.Wednesday.Classes.Count; i++)
+                    else
                     {
-                        ChangeColor(App.Wednesday.Classes[i]);
-                        <div class="class_item">
-                            <div class="class_number" style="@color_style">@App.Wednesday.Classes[i].Time[0]</div>
-                            <div class="card_container">
-                                <div class="class_label" style="@color_style">@App.Wednesday.Classes[i].Type[0] | @App.Wednesday.Classes[i].Time[1]</div>
-                                <div class="class_card">
-                                    <div class="class_name">@App.Wednesday.Classes[i].Name</div>
-                                    <div class="class_teacher_place">@App.Wednesday.Classes[i].Teacher <b>@App.Wednesday.Classes[i].Place</b></div>
-                                </div>
-                            </div>
+                        <div class="status_message_dayoff">
+                            <div class="status_message" style="display: block;">Пар сегодня нет 😎</div>
                         </div>
                     }
                 </div>
                 <div class="timetable_day">
-                    @for (int i = 0; i < App.Thursday.Classes.Count; i++)
+                    @if (App.Wednesday != null)
                     {
-                        ChangeColor(App.Thursday.Classes[i]);
-                        <div class="class_item">
-                            <div class="class_number" style="@color_style">@App.Thursday.Classes[i].Time[0]</div>
-                            <div class="card_container">
-                                <div class="class_label" style="@color_style">@App.Thursday.Classes[i].Type[0] | @App.Thursday.Classes[i].Time[1]</div>
-                                <div class="class_card">
-                                    <div class="class_name">@App.Thursday.Classes[i].Name</div>
-                                    <div class="class_teacher_place">@App.Thursday.Classes[i].Teacher <b>@App.Thursday.Classes[i].Place</b></div>
+                        for (int i = 0; i < App.Wednesday.Classes.Count; i++)
+                        {
+                            ChangeColor(App.Wednesday.Classes[i]);
+                            <div class="class_item">
+                                <div class="class_number" style="@color_style">@App.Wednesday.Classes[i].Time[0]</div>
+                                <div class="card_container">
+                                    <div class="class_label" style="@color_style">@App.Wednesday.Classes[i].Type[0] | @App.Wednesday.Classes[i].Time[1]</div>
+                                    <div class="class_card">
+                                        <div class="class_name">@App.Wednesday.Classes[i].Name</div>
+                                        <div class="class_teacher_place">@App.Wednesday.Classes[i].Teacher <b>@App.Wednesday.Classes[i].Place</b></div>
+                                    </div>
                                 </div>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="status_message_dayoff">
+                            <div class="status_message" style="display: block;">Пар сегодня нет 😎</div>
+                        </div>
+                    }
+                </div>
+                <div class="timetable_day">
+                    @if (App.Thursday != null)
+                    {
+                        for (int i = 0; i < App.Thursday.Classes.Count; i++)
+                        {
+                            ChangeColor(App.Thursday.Classes[i]);
+                            <div class="class_item">
+                                <div class="class_number" style="@color_style">@App.Thursday.Classes[i].Time[0]</div>
+                                <div class="card_container">
+                                    <div class="class_label" style="@color_style">@App.Thursday.Classes[i].Type[0] | @App.Thursday.Classes[i].Time[1]</div>
+                                    <div class="class_card">
+                                        <div class="class_name">@App.Thursday.Classes[i].Name</div>
+                                        <div class="class_teacher_place">@App.Thursday.Classes[i].Teacher <b>@App.Thursday.Classes[i].Place</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="status_message_dayoff">
+                            <div class="status_message" style="display: block;">Пар сегодня нет 😎</div>
                         </div>
                     }
                 </div>
                 <div class="timetable_day">
                     <a id="friday"></a>
-                    @for (int i = 0; i < App.Friday.Classes.Count; i++)
+                    @if (App.Friday != null)
                     {
-                        ChangeColor(App.Friday.Classes[i]);
-                        <div class="class_item">
-                            <div class="class_number" style="@color_style">@App.Friday.Classes[i].Time[0]</div>
-                            <div class="card_container">
-                                <div class="class_label" style="@color_style">@App.Friday.Classes[i].Type[0] | @App.Friday.Classes[i].Time[1]</div>
-                                <div class="class_card">
-                                    <div class="class_name">@App.Friday.Classes[i].Name</div>
-                                    <div class="class_teacher_place">@App.Friday.Classes[i].Teacher <b>@App.Friday.Classes[i].Place</b></div>
+                        for (int i = 0; i < App.Friday.Classes.Count; i++)
+                        {
+                            ChangeColor(App.Friday.Classes[i]);
+                            <div class="class_item">
+                                <div class="class_number" style="@color_style">@App.Friday.Classes[i].Time[0]</div>
+                                <div class="card_container">
+                                    <div class="class_label" style="@color_style">@App.Friday.Classes[i].Type[0] | @App.Friday.Classes[i].Time[1]</div>
+                                    <div class="class_card">
+                                        <div class="class_name">@App.Friday.Classes[i].Name</div>
+                                        <div class="class_teacher_place">@App.Friday.Classes[i].Teacher <b>@App.Friday.Classes[i].Place</b></div>
+                                    </div>
                                 </div>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="status_message_dayoff">
+                            <div class="status_message" style="display: block;">Пар сегодня нет 😎</div>
                         </div>
                     }
                 </div>
                 <div class="timetable_day">
-                    @for (int i = 0; i < App.Saturday.Classes.Count; i++)
+                    @if (App.Saturday != null)
                     {
-                        ChangeColor(App.Saturday.Classes[i]);
-                        <div class="class_item">
-                            <div class="class_number" style="@color_style">@App.Saturday.Classes[i].Time[0]</div>
-                            <div class="card_container">
-                                <div class="class_label" style="@color_style">@App.Saturday.Classes[i].Type[0] | @App.Saturday.Classes[i].Time[1]</div>
-                                <div class="class_card">
-                                    <div class="class_name">@App.Saturday.Classes[i].Name</div>
-                                    <div class="class_teacher_place">@App.Saturday.Classes[i].Teacher <b>@App.Saturday.Classes[i].Place</b></div>
+                        for (int i = 0; i < App.Saturday.Classes.Count; i++)
+                        {
+                            ChangeColor(App.Saturday.Classes[i]);
+                            <div class="class_item">
+                                <div class="class_number" style="@color_style">@App.Saturday.Classes[i].Time[0]</div>
+                                <div class="card_container">
+                                    <div class="class_label" style="@color_style">@App.Saturday.Classes[i].Type[0] | @App.Saturday.Classes[i].Time[1]</div>
+                                    <div class="class_card">
+                                        <div class="class_name">@App.Saturday.Classes[i].Name</div>
+                                        <div class="class_teacher_place">@App.Saturday.Classes[i].Teacher <b>@App.Saturday.Classes[i].Place</b></div>
+                                    </div>
                                 </div>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="status_message_dayoff">
+                            <div class="status_message" style="display: block;">Пар сегодня нет 😎</div>
                         </div>
                     }
                 </div>
