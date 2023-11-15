@@ -2,7 +2,6 @@
 @inject NavigationManager Navigation
 
 <body>
-    <main>
         <div class="timetable_tabbar">
             <a class="tabbutton" href="#friday">ПН</a>
             <a class="tabbutton" href="#friday">ВТ</a>
@@ -13,7 +12,9 @@
         </div>
         <div class="timetable_container">
                 <div class="timetable_day">
-                    @for (int i = 0; i < App.Monday.Classes.Count; i++)
+                @if (App.Monday != null)
+                {
+                    for (int i = 0; i < App.Monday.Classes.Count; i++)
                     {
                         ChangeColor(App.Monday.Classes[i]);
                         <div class="class_item">
@@ -27,21 +28,25 @@
                             </div>
                         </div>
                     }
-                </div>
+                }
+        </div>
                 <div class="timetable_day">
-                    @for (int i = 0; i < App.Tuesday.Classes.Count; i++)
+                    @if(App.Tuesday != null)
                     {
-                        ChangeColor(App.Tuesday.Classes[i]);
-                        <div class="class_item">
-                            <div class="class_number" style="@color_style">@App.Tuesday.Classes[i].Time[0]</div>
-                            <div class="card_container">
-                                <div class="class_label" style="@color_style">@App.Tuesday.Classes[i].Type[0] | @App.Tuesday.Classes[i].Time[1]</div>
-                                <div class="class_card">
-                                    <div class="class_name">@App.Tuesday.Classes[i].Name</div>
-                                    <div class="class_teacher_place">@App.Tuesday.Classes[i].Teacher <b>@App.Tuesday.Classes[i].Place</b></div>
+                        @for (int i = 0; i < App.Tuesday.Classes.Count; i++)
+                        {
+                            ChangeColor(App.Tuesday.Classes[i]);
+                            <div class="class_item">
+                                <div class="class_number" style="@color_style">@App.Tuesday.Classes[i].Time[0]</div>
+                                <div class="card_container">
+                                    <div class="class_label" style="@color_style">@App.Tuesday.Classes[i].Type[0] | @App.Tuesday.Classes[i].Time[1]</div>
+                                    <div class="class_card">
+                                        <div class="class_name">@App.Tuesday.Classes[i].Name</div>
+                                        <div class="class_teacher_place">@App.Tuesday.Classes[i].Teacher <b>@App.Tuesday.Classes[i].Place</b></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
                 </div>
                 <div class="timetable_day">
@@ -110,7 +115,6 @@
                     }
                 </div>
         </div>
-    </main>
 </body>
 
 @code {

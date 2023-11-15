@@ -31,14 +31,15 @@ namespace BonchMarkBlazor
             MainPage = new NavigationPage(new MainPage());
 
             if (File.Exists(Path.Combine(FolderPath, "UserData.txt")))
+            {
                 userData = File.ReadAllText(Path.Combine(FolderPath, "UserData.txt")).Split(":");
-
-            Starting = StartAsync();
-            Marking = MarkAsync();
-            Timetabling = TimetableAsync();
+                Starting = StartAsync();
+                Marking = MarkAsync();
+                Timetabling = TimetableAsync();
+            }
         }
 
-        static private async Task<bool> StartAsync()
+        static internal async Task<bool> StartAsync()
         {
             if(await Api.InitAsync() && await Api.LoginAsync(userData[0], userData[1]))
                 return true;
@@ -46,7 +47,7 @@ namespace BonchMarkBlazor
                 return false;
         }
 
-        static private async Task<BonchAPI.MarkStatus> MarkAsync()
+        static internal async Task<BonchAPI.MarkStatus> MarkAsync()
         {
             if (await Starting)
                 return await Api.MarkSequenceAsync();
@@ -54,7 +55,7 @@ namespace BonchMarkBlazor
                 return BonchAPI.MarkStatus.RequestFailed;
 		}
 
-        static private async Task<bool> TimetableAsync()
+        static internal async Task<bool> TimetableAsync()
         {
             if (await Starting)
             {

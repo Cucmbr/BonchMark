@@ -79,6 +79,7 @@ button {
 
 #app {
 	height: 92.5%;
+	background-color: var(--main-bgcolor);
 }
 
 /*****************/
@@ -92,6 +93,9 @@ button {
 	align-items: center;
 	height: 8%;
 	background-color: var(--accent-bgcolor);
+	box-shadow: 0rem 1.1rem 0.3rem 0.9rem #595851;
+	z-index: 1;
+	position: relative;
 }
 	.btn_timetable svg {
 		fill: var(--inactive-color);
