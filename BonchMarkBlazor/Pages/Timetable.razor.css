@@ -1,4 +1,13 @@
-﻿.timetable_container {
+﻿.timetable_tabbar {
+    display: flex;
+    justify-content: space-evenly;
+}
+.tabbutton {
+    margin-top: 0.5rem;
+    text-decoration: none;
+}
+
+.timetable_container {
     scroll-snap-type: x mandatory;
     display: flex;
     overflow-x: scroll;
@@ -15,7 +24,7 @@
     min-width: calc(100vw - 2rem);
     scroll-snap-align: start;
     align-items: start;
-    padding: 1rem 1rem;
+    padding: 0rem 1rem 1rem 1rem;
 }
 
 .class_item {
