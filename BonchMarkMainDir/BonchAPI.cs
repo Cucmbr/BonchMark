@@ -85,19 +85,12 @@ namespace BonchMark
         private async Task<MarkStatus> MarkAsync()
         {
             var doc = await Parser.ParseDocumentAsync(await PullTimetableAsync());
-            var openZanNode = doc.QuerySelector("tbody a");
+            var openZanNode = doc.QuerySelector("tbody a[onclick]");
 
             if (openZanNode != null)
             {
                 string openZan = openZanNode.OuterHtml;
-                try
-                {
-                    openZan = openZan.Substring(openZan.IndexOf("(") + 1, openZan.IndexOf(")") - openZan.IndexOf("(") - 1);
-                }
-                catch(ArgumentOutOfRangeException)
-                {
-                    return MarkStatus.NoButton;
-                }
+                openZan = openZan.Substring(openZan.IndexOf("(") + 1, openZan.IndexOf(")") - openZan.IndexOf("(") - 1);
                 string[] openZanArr = openZan.Split(',');
                 if (openZanArr.Length != 2)
                 {

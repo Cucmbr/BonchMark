@@ -6,10 +6,5 @@
         {
             InitializeComponent();
         }
-
-        internal async void ToTimetable()
-        {
-            await Navigation.PushAsync(new TimetablePage());
-        }
     }
 }
