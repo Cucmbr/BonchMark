@@ -90,7 +90,14 @@ namespace BonchMark
             if (openZanNode != null)
             {
                 string openZan = openZanNode.OuterHtml;
-                openZan = openZan.Substring(openZan.IndexOf("(") + 1, openZan.IndexOf(")") - openZan.IndexOf("(") - 1);
+                try
+                {
+                    openZan = openZan.Substring(openZan.IndexOf("(") + 1, openZan.IndexOf(")") - openZan.IndexOf("(") - 1);
+                }
+                catch(ArgumentOutOfRangeException)
+                {
+                    return MarkStatus.NoButton;
+                }
                 string[] openZanArr = openZan.Split(',');
                 if (openZanArr.Length != 2)
                 {

@@ -28,6 +28,7 @@
     align-items: start;
     padding: 0rem 1rem 1rem 1rem;
     overflow: scroll;
+    scroll-snap-stop: always;
 }
     .timetable_day::-webkit-scrollbar {
         display: none;
