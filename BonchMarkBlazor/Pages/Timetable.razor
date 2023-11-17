@@ -3,15 +3,15 @@
 
 <body>
         <div class="timetable_tabbar">
-            <a class="tabbutton" href="#friday">ПН</a>
-            <a class="tabbutton" href="#friday">ВТ</a>
-            <a class="tabbutton" href="#friday">СР</a>
-            <a class="tabbutton" href="#friday">ЧТ</a>
-            <a class="tabbutton" href="#friday">ПТ</a>
-            <a class="tabbutton" href="#friday">СБ</a>
+            <a class="tabbutton" href="timetable/#monday">ПН</a>
+            <a class="tabbutton" href="timetable/#tuesday">ВТ</a>
+            <a class="tabbutton" href="timetable/#wednesday">СР</a>
+            <a class="tabbutton" href="timetable/#thursday">ЧТ</a>
+            <a class="tabbutton" href="timetable/#friday">ПТ</a>
+            <a class="tabbutton" href="timetable/#saturday">СБ</a>
         </div>
         <div class="timetable_container">
-                <div class="timetable_day">
+                <div class="timetable_day" id="monday">
                     @if (App.Monday != null)
                     {
                         for (int i = 0; i < App.Monday.Classes.Count; i++)
@@ -36,7 +36,7 @@
                         </div>
                     }
                 </div>
-                <div class="timetable_day">
+                <div class="timetable_day" id="tuesday">
                     @if(App.Tuesday != null)
                     {
                         for (int i = 0; i < App.Tuesday.Classes.Count; i++)
@@ -61,7 +61,7 @@
                         </div>
                     }
                 </div>
-                <div class="timetable_day">
+                <div class="timetable_day" id="wednesday">
                     @if (App.Wednesday != null)
                     {
                         for (int i = 0; i < App.Wednesday.Classes.Count; i++)
@@ -86,7 +86,7 @@
                         </div>
                     }
                 </div>
-                <div class="timetable_day">
+                <div class="timetable_day" id="thursday">
                     @if (App.Thursday != null)
                     {
                         for (int i = 0; i < App.Thursday.Classes.Count; i++)
@@ -136,7 +136,7 @@
                         </div>
                     }
                 </div>
-                <div class="timetable_day">
+                <div class="timetable_day" id="saturday">
                     @if (App.Saturday != null)
                     {
                         for (int i = 0; i < App.Saturday.Classes.Count; i++)
@@ -163,6 +163,7 @@
                 </div>
         </div>
 </body>
+<AnchorNavigation />
 
 @code {
     private string color_style;
