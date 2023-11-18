@@ -1,10 +1,217 @@
-﻿.timetable_tabbar {
+﻿.slider {
+    position: fixed;
+    top: 1rem;
+    left: calc((100vw - 6 * 3rem) / 7);
+    width: 3rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background: var(--main-color);
+    animation: slide 1s linear infinite;
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--scroll) * -1s);
+}
+
+.timetable_tabbar {
     display: flex;
     justify-content: space-evenly;
+    padding: 0.5rem 0;
 }
 .tabbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 0.5rem;
     text-decoration: none;
+    width: 3rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    z-index: 2;
+}
+    .tabbutton h1 {
+        color: transparent;
+        font-size: 1rem;
+        background: linear-gradient(90deg, white 50%, #282828 50%);
+        background-size: 400%;
+        background-repeat: no-repeat;
+        backdrop-clip: text;
+        -webkit-background-clip: text;
+    }
+.hh1 {
+    animation: fade1 1s linear infinite both;
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--scroll) * -1s);
+}
+.hh2 {
+    animation: fade2 1s linear infinite both;
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--scroll) * -1s);
+}
+.hh3 {
+    animation: fade3 1s linear infinite both;
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--scroll) * -1s);
+}
+.hh4 {
+    animation: fade4 1s linear infinite both;
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--scroll) * -1s);
+}
+.hh5 {
+    animation: fade5 1s linear infinite both;
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--scroll) * -1s);
+}
+.hh6 {
+    animation: fade6 1s linear infinite both;
+    animation-play-state: paused;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-delay: calc(var(--scroll) * -1s);
+}
+
+@keyframes fade1 {
+    0% {
+        background-position-x: 0%;
+    }
+    20% {
+        background-position-x: 100%;
+    }
+    100% {
+        background-position-x: 100%;
+    }
+}
+@keyframes fade2 {
+    0% {
+        background-position-x: 100%;
+    }
+
+    20% {
+        background-position-x: 0%;
+    }
+
+    40% {
+        background-position-x: 100%;
+    }
+
+    100% {
+        background-position-x: 100%;
+    }
+}
+@keyframes fade3 {
+    0% {
+        background-position-x: 100%;
+    }
+
+    20% {
+        background-position-x: 100%;
+    }
+
+    40% {
+        background-position-x: 0%;
+    }
+    
+    60% {
+        background-position-x: 100%;
+    }
+
+    100% {
+        background-position-x: 100%;
+    }
+}
+@keyframes fade4 {
+    0% {
+        background-position-x: 100%;
+    }
+
+    20% {
+        background-position-x: 100%;
+    }
+
+    40% {
+        background-position-x: 100%;
+    }
+
+    60% {
+        background-position-x: 0%;
+    }
+
+    80% {
+        background-position-x: 100%;
+    }
+
+    100% {
+        background-position-x: 100%;
+    }
+}
+@keyframes fade5 {
+    0% {
+        background-position-x: 100%;
+    }
+
+    20% {
+        background-position-x: 100%;
+    }
+
+    40% {
+        background-position-x: 100%;
+    }
+
+    60% {
+        background-position-x: 100%;
+    }
+
+    80% {
+        background-position-x: 0%;
+    }
+
+    100% {
+        background-position-x: 100%;
+    }
+}
+@keyframes fade6 {
+    0% {
+        background-position-x: 100%;
+    }
+
+    20% {
+        background-position-x: 100%;
+    }
+
+    40% {
+        background-position-x: 100%;
+    }
+
+    60% {
+        background-position-x: 100%;
+    }
+
+    80% {
+        background-position-x: 100%;
+    }
+
+    100% {
+        background-position-x: 0%;
+    }
+}
+@keyframes slide {
+    from {
+        
+    }
+    to {
+        left: calc(100vw - (100vw - 6 * 3rem) / 7 - 3rem);
+    }
 }
 
 .timetable_container {

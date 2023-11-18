@@ -1,14 +1,17 @@
 ﻿@page "/timetable"
 @inject NavigationManager Navigation
+@inject IJSRuntime JsRuntime
+
 
 <body>
         <div class="timetable_tabbar">
-            <a class="tabbutton" href="timetable/#monday">ПН</a>
-            <a class="tabbutton" href="timetable/#tuesday">ВТ</a>
-            <a class="tabbutton" href="timetable/#wednesday">СР</a>
-            <a class="tabbutton" href="timetable/#thursday">ЧТ</a>
-            <a class="tabbutton" href="timetable/#friday">ПТ</a>
-            <a class="tabbutton" href="timetable/#saturday">СБ</a>
+        <div class="slider"></div>
+		    <a class="tabbutton" href="timetable/#monday"><h1 class="hh1">ПН</h1></a>
+            <a class="tabbutton" href="timetable/#tuesday"><h1 class="hh2">ВТ</h1></a>
+            <a class="tabbutton" href="timetable/#wednesday"><h1 class="hh3">СР</h1></a>
+            <a class="tabbutton" href="timetable/#thursday"><h1 class="hh4">ЧТ</h1></a>
+            <a class="tabbutton" href="timetable/#friday"><h1 class="hh5">ПТ</h1></a>
+            <a class="tabbutton" href="timetable/#saturday"><h1 class="hh6">СБ</h1></a>
         </div>
         <div class="timetable_container">
                 <div class="timetable_day" id="monday">
@@ -162,8 +165,15 @@
                     }
                 </div>
         </div>
+
+    
 </body>
 <AnchorNavigation />
+<script>
+    document.querySelector('.timetable_container').addEventListener('scroll', () => {
+        document.querySelector('.timetable_tabbar').style.setProperty('--scroll', (document.querySelector('.timetable_container').scrollLeft / (document.querySelector('.timetable_container').scrollWidth - window.innerWidth)));
+	}, false);
+</script>
 
 @code {
     private string color_style;
