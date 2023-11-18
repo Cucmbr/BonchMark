@@ -104,7 +104,7 @@ namespace BonchMark
 
     public class DayInfo
     {
-        public DateTime Date { get; internal set; }
+        public DateTime Date { get; set; }
         public List<ClassInfo> Classes { get; internal set; }
     }
 

@@ -25,28 +25,53 @@
     {
         if (await App.Timetabling)
         {
-            foreach (var day in App.Week)
+            foreach (var day in App.Days)
             {
                 switch (day.Date.DayOfWeek)
                 {
                     case DayOfWeek.Monday:
-                        App.Monday = day;
+                        App.Week[0] = day;
                         break;
                     case DayOfWeek.Tuesday:
-                        App.Tuesday = day;
+                        App.Week[1] = day;
                         break;
                     case DayOfWeek.Wednesday:
-                        App.Wednesday = day;
+                        App.Week[2] = day;
                         break;
                     case DayOfWeek.Thursday:
-                        App.Thursday = day;
+                        App.Week[3] = day;
                         break;
                     case DayOfWeek.Friday:
-                        App.Friday = day;
+                        App.Week[4] = day;
                         break;
                     case DayOfWeek.Saturday:
-                        App.Saturday = day;
+                        App.Week[5] = day;
                         break;
+                }
+            }
+
+            for (int i = 0; i < App.Week.Length; i++)
+            {
+                if (App.Week[i] == null)
+                {
+                    if (i == 0)
+                    {
+                        int j = 1;
+                        while (App.Week[j] == null)
+                        {
+                            j++;
+                        }
+                        App.Week[i] = new DayInfo() { Date = App.Week[j].Date.AddDays(-j) };
+                    }
+                    else
+                    {
+                        int j = i;
+                        while (App.Week[j] == null)
+                        {
+                            j--;
+                        }
+                        App.Week[i] = new DayInfo() { Date = App.Week[j].Date.AddDays(i - j) };
+                    }
                 }
             }
 

@@ -38,7 +38,7 @@
 
     private async Task ScrollToFragment()
     {
-        var uri = Navigation.Uri.Contains('#') ? new Uri(Navigation.Uri, UriKind.Absolute) : new Uri(Navigation.Uri + $"/#{DateTime.Today.DayOfWeek.ToString().ToLower()}", UriKind.Absolute);
+        var uri = Navigation.Uri.Contains('#') ? new Uri(Navigation.Uri, UriKind.Absolute) : new Uri(Navigation.Uri + $"/#{DateTime.Today.DayOfWeek}", UriKind.Absolute);
         var fragment = uri.Fragment;
         if (fragment.StartsWith('#'))
         {

@@ -8,7 +8,7 @@ namespace BonchMarkBlazor
         internal static string[] Files;
         internal static BonchAPI Api = new BonchAPI();
         internal static Timetable Timetable;
-		internal static List<DayInfo> Week;
+		internal static List<DayInfo> Days;
         internal static Task<bool> Starting;
         internal static Task<BonchAPI.MarkStatus> Marking;
         internal static Task<bool> Timetabling;
@@ -21,6 +21,7 @@ namespace BonchMarkBlazor
         internal static DayInfo Thursday { get; set; }
         internal static DayInfo Friday { get; set; }
         internal static DayInfo Saturday { get; set; }
+        internal static DayInfo[] Week { get; set; } = new DayInfo[6];
 
         public App()
         {
@@ -60,7 +61,7 @@ namespace BonchMarkBlazor
             if (await Starting)
             {
                 Timetable = await Timetable.CreateAsync(Api);
-                Week = Timetable.GetWeek();
+                Days = Timetable.GetWeek();
                 return true;
             }
             else
