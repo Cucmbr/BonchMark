@@ -26,6 +26,7 @@
         {
             status_msg = "😼: \"Личный кабинет не отвечает\"";
             status_msg_style = "background-color: #FFC5C5; display: block";
+            App.Starting = App.StartAsync();
         }
         else
         {
@@ -47,7 +48,8 @@
                     status_msg = "Ошибка! ❌";
                     status_msg_style = "background-color: #FFC5C5; display: block";
                     break;
-            }            
+            }
+            App.Marking = App.MarkAsync();
         }
 
         mark_btn_style = "opacity: 1;";

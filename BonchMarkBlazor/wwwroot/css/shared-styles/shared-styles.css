@@ -78,6 +78,10 @@ button {
 		transform: scale(.92);
 	}
 
+a {
+	-webkit-tap-highlight-color: transparent;
+}
+
 #app {
 	height: 92.5%;
 	background-color: var(--main-bgcolor);
