@@ -16,6 +16,12 @@
 	src: url('FiraSans-Bold.ttf');
 }
 
+@keyframes rotation {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 /*General*/
 * {
 	-webkit-user-drag: none;
@@ -125,4 +131,8 @@ a {
 		align-items: center;
 		width: 2rem;
 		height: 2rem;
+	}
+	.nav_bar_loading svg {
+		fill: var(--inactive-color);
+		animation: rotation 1s ease-in-out infinite;
 	}

@@ -206,9 +206,6 @@
     }
 }
 @keyframes slide {
-    from {
-        
-    }
     to {
         left: calc(100vw - (100vw - 6 * 3rem) / 7 - 3rem);
     }
@@ -222,6 +219,10 @@
     gap: 5rem;
     max-height: 93.69%;
 }
+    .timetable_container h1 {
+        color: #282828;
+        margin: 1rem 0 1rem 3rem;    
+    }
 .timetable_container::-webkit-scrollbar {
     display: none;
 }
