@@ -29,8 +29,8 @@
                                     <div class="class_label" style="@color_style">@day.Classes[i].Type[0] | @day.Classes[i].Time[1]</div>
                                     <div class="class_card">
                                         <div class="class_name">@day.Classes[i].Name</div>
-                                        <div class="class_teacher_place">@day.Classes[i].Teacher <b>@day.Classes[i].Place</b></div>
-                                    </div>
+                                    <div class="class_teacher_place">@day.Classes[i].Teacher <b>@day.Classes[i].Place</b> @if (day.Classes[i].Type[1] != null){<div>✅</div>} </div>
+                                </div>
                                 </div>
                             </div>
                         }

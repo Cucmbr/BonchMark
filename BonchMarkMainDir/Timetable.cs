@@ -96,7 +96,7 @@ namespace BonchMark
         {
             Time = time.Length == 2 ? new string[] { time[0], time[1].Substring(time[1].IndexOf("(") + 1, time[1].IndexOf(")") - time[1].IndexOf("(") - 1) } : new string[] {"ФЗ", time[0] };
             Name = name;
-            Type = type.Length == 2 ? type : new string[] { type[0], "" };
+            Type = type.Length == 2 ? type : new string[] { type[0], null };
             Place = place;
             Teacher = teacher;
         }
