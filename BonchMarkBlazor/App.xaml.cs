@@ -15,15 +15,10 @@ namespace BonchMarkBlazor
 
 		internal static string[] userData;
 
-        internal static DayInfo Monday { get; set; }
-        internal static DayInfo Tuesday { get; set; }
-        internal static DayInfo Wednesday { get; set; }
-        internal static DayInfo Thursday { get; set; }
-        internal static DayInfo Friday { get; set; }
-        internal static DayInfo Saturday { get; set; }
         internal static DayInfo[] Week { get; set; } = new DayInfo[6];
+        internal static DayInfo[] AdditionalWeek { get; set; } = new DayInfo[6];
 
-        public App()
+		public App()
         {
             InitializeComponent();
 
@@ -61,13 +56,72 @@ namespace BonchMarkBlazor
             if (await Starting)
             {
                 Timetable = await Timetable.CreateAsync(Api);
-                Days = Timetable.GetWeek();
                 return true;
             }
             else
             {
                 return false;
             }
+        }
+
+        static internal async Task<DayInfo[]> GenerateWeek(int weekNumber)
+        {
+            await Timetable.Update(weekNumber);
+            DayInfo[] resultWeek = new DayInfo[6];
+            if (await Timetabling)
+            {
+                Days = Timetable.GetWeek();
+                foreach (var day in Days)
+                {
+                    switch (day.Date.DayOfWeek)
+                    {
+                        case DayOfWeek.Monday:
+                            resultWeek[0] = day;
+                            break;
+                        case DayOfWeek.Tuesday:
+                            resultWeek[1] = day;
+                            break;
+                        case DayOfWeek.Wednesday:
+                            resultWeek[2] = day;
+                            break;
+                        case DayOfWeek.Thursday:
+                            resultWeek[3] = day;
+                            break;
+                        case DayOfWeek.Friday:
+                            resultWeek[4] = day;
+                            break;
+                        case DayOfWeek.Saturday:
+                            resultWeek[5] = day;
+                            break;
+                    }
+                }
+
+                for (int i = 0; i < resultWeek.Length; i++)
+                {
+                    if (resultWeek[i] == null)
+                    {
+                        if (i == 0)
+                        {
+                            int j = 1;
+                            while (resultWeek[j] == null)
+                            {
+                                j++;
+                            }
+                            resultWeek[i] = new DayInfo() { Date = resultWeek[j].Date.AddDays(-j) };
+                        }
+                        else
+                        {
+                            int j = i;
+                            while (resultWeek[j] == null)
+                            {
+                                j--;
+                            }
+                            resultWeek[i] = new DayInfo() { Date = resultWeek[j].Date.AddDays(i - j) };
+                        }
+                    }
+                }
+            }
+            return resultWeek;
         }
     }
 }

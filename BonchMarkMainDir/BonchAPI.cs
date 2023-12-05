@@ -68,23 +68,39 @@ namespace BonchMark
             }
         }
 
-        internal async Task<string> PullTimetableAsync()
+        internal async Task<string> PullTimetableAsync(int weekNumber)
         {
-            using LkRequest timetableRequest = new LkRequest("key=6118");
-            using (var timetableResponse = await _httpClient.PostAsync(_httpClient.BaseAddress + "/cabinet/project/cabinet/forms/raspisanie.php", timetableRequest))
+            if (weekNumber == -1)
             {
-                if (InvalidResponseCheck(timetableResponse))
+
+                using LkRequest timetableRequest = new LkRequest("key=6118"); // govno ne rabotaet
+                using (var timetableResponse = await _httpClient.PostAsync(_httpClient.BaseAddress + "/cabinet/project/cabinet/forms/raspisanie.php", timetableRequest))
                 {
-                    return "";
+                    if (InvalidResponseCheck(timetableResponse))
+                    {
+                        return "";
+                    }
+                    var byteResp = await timetableResponse.Content.ReadAsByteArrayAsync();
+                    return Encoding.GetEncoding(1251).GetString(byteResp, 0, byteResp.Length);
                 }
-                var byteResp = await timetableResponse.Content.ReadAsByteArrayAsync();
-                return Encoding.GetEncoding(1251).GetString(byteResp, 0, byteResp.Length);
+            }
+            else
+            {
+                using (var timetableResponse = await _httpClient.GetAsync(_httpClient.BaseAddress + $"/cabinet/project/cabinet/forms/raspisanie.php?week={weekNumber}"))
+                {
+                    if (InvalidResponseCheck(timetableResponse))
+                    {
+                        return "";
+                    }
+                    var byteResp = await timetableResponse.Content.ReadAsByteArrayAsync();
+                    return Encoding.GetEncoding(1251).GetString(byteResp, 0, byteResp.Length);
+                }
             }
         }
 
         private async Task<MarkStatus> MarkAsync()
         {
-            var doc = await Parser.ParseDocumentAsync(await PullTimetableAsync());
+            var doc = await Parser.ParseDocumentAsync(await PullTimetableAsync(-1));
             var openZanNode = doc.QuerySelector("tbody a[onclick]");
 
             if (openZanNode != null)

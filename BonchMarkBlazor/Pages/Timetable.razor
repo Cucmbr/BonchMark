@@ -17,7 +17,7 @@
             @foreach (var day in App.Week)
             {
                 <div class="timetable_day" id="@day.Date.DayOfWeek">
-                    <h1>@day.Date.Date.ToString("dd MMMM", System.Globalization.CultureInfo.GetCultureInfo("ru-RU"))</h1>
+                    <h1>@day.Date.Date.ToString("d MMMM", System.Globalization.CultureInfo.GetCultureInfo("ru-RU"))</h1>
                     @if (day.Classes != null)
                     {
                         for (int i = 0; i < day.Classes.Count; i++)
