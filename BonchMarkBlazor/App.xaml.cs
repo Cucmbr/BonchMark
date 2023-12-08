@@ -66,10 +66,10 @@ namespace BonchMarkBlazor
 
         static internal async Task<DayInfo[]> GenerateWeek(int weekNumber)
         {
-            await Timetable.Update(weekNumber);
             DayInfo[] resultWeek = new DayInfo[6];
             if (await Timetabling)
             {
+                await Timetable.Update(weekNumber);
                 Days = Timetable.GetWeek();
                 foreach (var day in Days)
                 {
