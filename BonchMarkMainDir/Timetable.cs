@@ -5,7 +5,7 @@ namespace BonchMark;
 
 public class Timetable
 {
-    public int CurrentWeek = -1;
+    public int CurrentWeek { get; set; } = -1;
 
     private IHtmlDocument _fullTimetable;
     private IElement _tableNode;
@@ -18,7 +18,7 @@ public class Timetable
         _api = api;
 
         var weekText = _fullTimetable.QuerySelector("div.container-fluid > h3").TextContent;
-        CurrentWeek = Convert.ToInt32(weekText.Substring(weekText.IndexOf('№'), weekText.IndexOf('(') - 1));
+        CurrentWeek = Convert.ToInt32(weekText.Substring(weekText.IndexOf('№') + 1, weekText.IndexOf('(') - weekText.IndexOf('№') - 1));
     }
     public static async Task<Timetable> CreateAsync(BonchAPI api)
     {

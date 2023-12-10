@@ -30,7 +30,7 @@
 
         if (await App.Timetabling)
         {
-            App.Week = await App.GenerateWeek(15);
+            App.Week = await App.GenerateWeek(App.Timetable.CurrentWeek);
 
             loadingstyle = "display: none;";
             markstyle = "display: block;";

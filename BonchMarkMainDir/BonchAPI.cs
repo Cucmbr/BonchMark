@@ -72,7 +72,6 @@ namespace BonchMark
         {
             if (weekNumber == -1)
             {
-
                 using LkRequest timetableRequest = new LkRequest("key=6118");
                 using (var timetableResponse = await _httpClient.PostAsync(_httpClient.BaseAddress + "/cabinet/project/cabinet/forms/raspisanie.php", timetableRequest))
                 {
