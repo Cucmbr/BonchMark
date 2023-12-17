@@ -1,4 +1,21 @@
-﻿.slider {
+﻿.week_arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 2rem;
+    background: linear-gradient(var(--gradient-colors));
+    margin: auto;
+    border-radius: 1rem;
+    padding: 0.8rem 1rem;
+}
+    .week_arrow svg {
+        fill: white;
+        width: 1.5rem;
+        display: none;
+    }
+
+.slider {
     position: fixed;
     top: 1rem;
     left: calc((100vw - 6 * 3rem) / 7);
