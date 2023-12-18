@@ -29,6 +29,7 @@
         }
         else
         {
+            App.Marking = App.MarkAsync();
             switch (await App.Marking)
             {
                 case BonchAPI.MarkStatus.OK:
@@ -48,7 +49,6 @@
                     status_msg_style = "background-color: #FFC5C5; display: block";
                     break;
             }
-            App.Marking = App.MarkAsync();
         }
 
         mark_btn_style = "opacity: 1;";

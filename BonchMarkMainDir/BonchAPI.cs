@@ -70,7 +70,7 @@ namespace BonchMark
 
         internal async Task<string> PullTimetableAsync(int weekNumber)
         {
-            if (weekNumber == -1)
+            if (weekNumber == 0)
             {
                 using LkRequest timetableRequest = new LkRequest("key=6118");
                 using (var timetableResponse = await _httpClient.PostAsync(_httpClient.BaseAddress + "/cabinet/project/cabinet/forms/raspisanie.php", timetableRequest))
@@ -85,6 +85,8 @@ namespace BonchMark
             }
             else
             {
+                await InitAsync();
+                //await LoginAsync(_users, _parole);
                 using (var timetableResponse = await _httpClient.GetAsync(_httpClient.BaseAddress + $"/cabinet/project/cabinet/forms/raspisanie.php?week={weekNumber}"))
                 {
                     if (InvalidResponseCheck(timetableResponse))
@@ -97,9 +99,9 @@ namespace BonchMark
             }
         }
 
-        private async Task<MarkStatus> MarkAsync()
+        public async Task<MarkStatus> MarkAsync()
         {
-            var doc = await Parser.ParseDocumentAsync(await PullTimetableAsync(-1));
+            var doc = await Parser.ParseDocumentAsync(await PullTimetableAsync(0));
             var openZanNode = doc.QuerySelector("tbody a[onclick]");
 
             if (openZanNode != null)
@@ -132,14 +134,6 @@ namespace BonchMark
                 return true;
             else
                 return false;
-        }
-
-        public async Task<MarkStatus> MarkSequenceAsync()
-        {
-            if (await InitAsync() && await LoginAsync(_users, _parole))
-                return await MarkAsync();
-            else
-                return MarkStatus.RequestFailed;
         }
     }
 }

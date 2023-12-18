@@ -2,16 +2,37 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2rem;
-    width: 2rem;
     background: linear-gradient(var(--gradient-colors));
     margin: auto;
     border-radius: 1rem;
     padding: 0.8rem 1rem;
 }
     .week_arrow svg {
-        fill: white;
+        fill: var(--main-bgcolor);
         width: 1.5rem;
+    }
+
+    .arrow_left {
+        margin-left: 0.25rem;
+        margin-right: 2rem;
+    }
+    .arrow_right {
+        margin-left: 2rem;
+        margin-right: 0.25rem;
+    }
+
+    .week_arrow svg:nth-of-type(2) {
+        animation: rotation 1s ease-in-out infinite;
+    }
+
+.main_container {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    max-height: 93.69%;
+    scroll-snap-type: x mandatory;
+}
+    .main_container::-webkit-scrollbar {
         display: none;
     }
 
@@ -234,7 +255,9 @@
     overflow-x: scroll;
     overflow-y: hidden;
     gap: 5rem;
-    max-height: 93.69%;
+    min-width: 100vw;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
     .timetable_container h1 {
         color: #282828;

@@ -16,7 +16,6 @@ namespace BonchMarkBlazor
 		internal static string[] userData;
 
         internal static DayInfo[] Week { get; set; } = new DayInfo[6];
-        internal static DayInfo[] AdditionalWeek { get; set; } = new DayInfo[6];
 
 		public App()
         {
@@ -46,7 +45,7 @@ namespace BonchMarkBlazor
         static internal async Task<BonchAPI.MarkStatus> MarkAsync()
         {
             if (await Starting)
-                return await Api.MarkSequenceAsync();
+                return await Api.MarkAsync();
             else
                 return BonchAPI.MarkStatus.RequestFailed;
 		}
@@ -71,6 +70,16 @@ namespace BonchMarkBlazor
             {
                 await Timetable.Update(weekNumber);
                 Days = Timetable.GetWeek();
+
+                if (Days.Count == 0)
+                {
+                    for (int i = 0; i < resultWeek.Length; i++)
+                    {
+                        resultWeek[i] = new DayInfo() { Date = new DateTime(1, 1, 1) };
+                    }
+                    return resultWeek;
+                }
+
                 foreach (var day in Days)
                 {
                     switch (day.Date.DayOfWeek)

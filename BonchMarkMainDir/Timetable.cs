@@ -5,7 +5,7 @@ namespace BonchMark;
 
 public class Timetable
 {
-    public int CurrentWeek { get; set; } = -1;
+    public int CurrentWeek { get; } = 0;
 
     private IHtmlDocument _fullTimetable;
     private IElement _tableNode;
@@ -22,7 +22,7 @@ public class Timetable
     }
     public static async Task<Timetable> CreateAsync(BonchAPI api)
     {
-        return new Timetable(api.Parser.ParseDocument(await api.PullTimetableAsync(-1)), api);
+        return new Timetable(api.Parser.ParseDocument(await api.PullTimetableAsync(0)), api);
     }
 
     public async Task Update(int weekNumber)
