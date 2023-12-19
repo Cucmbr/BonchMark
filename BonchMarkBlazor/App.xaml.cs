@@ -63,7 +63,7 @@ namespace BonchMarkBlazor
             }
         }
 
-        static internal async Task<DayInfo[]> GenerateWeek(int weekNumber)
+        static internal async Task<DayInfo[]> GenerateWeekAsync(int weekNumber)
         {
             DayInfo[] resultWeek = new DayInfo[6];
             if (await Timetabling)
@@ -77,7 +77,7 @@ namespace BonchMarkBlazor
                     {
                         resultWeek[i] = new DayInfo() { Date = new DateTime(1, 1, 1) };
                     }
-                    return resultWeek;
+                    return resultWeek; // vonaet nado dodelat
                 }
 
                 foreach (var day in Days)

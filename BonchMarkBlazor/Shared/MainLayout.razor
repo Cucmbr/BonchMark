@@ -30,7 +30,10 @@
 
         if (await App.Timetabling)
         {
-            App.Week = await App.GenerateWeek(App.Timetable.CurrentWeek);
+            if (DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
+                App.Week = await App.GenerateWeekAsyncGenerateWeekAsync(App.Timetable.CurrentWeek + 1);
+            else
+                App.Week = await App.GenerateWeekAsyncGenerateWeekAsync(App.Timetable.CurrentWeek);
 
             loadingstyle = "display: none;";
             markstyle = "display: block;";

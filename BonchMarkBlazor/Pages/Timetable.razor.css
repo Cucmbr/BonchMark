@@ -30,7 +30,7 @@
     overflow-x: scroll;
     overflow-y: hidden;
     max-height: 93.69%;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
 }
     .main_container::-webkit-scrollbar {
         display: none;
