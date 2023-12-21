@@ -1,4 +1,30 @@
-﻿.week_arrow {
+﻿.loading_screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: visible;
+    z-index: 3;
+}
+
+    .loading_screen svg {
+        width: 3rem;
+        height: 3rem;
+        top: calc(50% - 1.5rem);
+        left: calc(50% - 1.5rem);
+        border-radius: 1rem;
+        fill: var(--inactive-color);
+        position: absolute;
+        animation: rotation 1s ease-in-out infinite;
+    }
+
+.shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--main-bgcolor);
+}
+
+.week_arrow {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,6 +306,38 @@
 }
     .timetable_day::-webkit-scrollbar {
         display: none;
+    }
+
+.date_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+    .date_container h1 {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+.calendar_container {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+}
+    .calendar_container input {
+        height: 2rem;
+        width: 2rem;
+        opacity: 0;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .calendar_container svg {
+        position: absolute;
+        width: 2rem;
+        z-index: 0;
+        fill: #282828;
     }
 
 .class_item {

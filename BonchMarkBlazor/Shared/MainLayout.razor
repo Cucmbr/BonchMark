@@ -31,9 +31,9 @@
         if (await App.Timetabling)
         {
             if (DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
-                App.Week = await App.GenerateWeekAsyncGenerateWeekAsync(App.Timetable.CurrentWeek + 1);
+                App.Week = await App.GenerateWeekAsync(App.Timetable.CurrentWeek + 1);
             else
-                App.Week = await App.GenerateWeekAsyncGenerateWeekAsync(App.Timetable.CurrentWeek);
+                App.Week = await App.GenerateWeekAsync(App.Timetable.CurrentWeek);
 
             loadingstyle = "display: none;";
             markstyle = "display: block;";
