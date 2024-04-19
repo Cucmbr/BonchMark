@@ -1,7 +1,7 @@
 ﻿:root {
 	--main-color: #f5841f;
-	--main-bgcolor: #fcf9f2;
-	--accent-bgcolor: #FAE6C3;
+	--main-bgcolor: #edf3f5;
+	--accent-bgcolor: #FDF1DE;
 	--text-gray: #5C5C5C;
 	--gradient-colors: var(--main-color) 40%, #f7911e;
 	--inactive-color: #301f19;

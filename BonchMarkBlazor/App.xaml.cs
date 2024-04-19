@@ -29,7 +29,6 @@ namespace BonchMarkBlazor
             {
                 userData = File.ReadAllText(Path.Combine(FolderPath, "UserData.txt")).Split(":");
                 Starting = StartAsync();
-                Marking = MarkAsync();
                 Timetabling = TimetableAsync();
             }
         }

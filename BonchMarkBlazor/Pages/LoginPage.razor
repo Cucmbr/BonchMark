@@ -46,7 +46,6 @@
             File.WriteAllText(Path.Combine(App.FolderPath, "UserData.txt"), usersEntry + ":" + paroleEntry);
             App.userData = File.ReadAllText(Path.Combine(App.FolderPath, "UserData.txt")).Split(":");
             App.Starting = App.StartAsync();
-            App.Marking = App.MarkAsync();
             App.Timetabling = App.TimetableAsync();
             Navigation.NavigateTo("/mark");
         }
