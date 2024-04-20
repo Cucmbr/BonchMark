@@ -17,8 +17,8 @@ public class Timetable
         _tableNode = _fullTimetable.QuerySelector("tbody");
         _api = api;
 
-        var weekText = _fullTimetable.QuerySelector("div.container-fluid > h3").TextContent;
-        CurrentWeek = Convert.ToInt32(weekText.Substring(weekText.IndexOf('№') + 1, weekText.IndexOf('(') - weekText.IndexOf('№') - 1));
+        var weekText = _fullTimetable.QuerySelector("a.page-link.bg-info.text-white").GetAttribute("onclick");
+        CurrentWeek = Convert.ToInt32(weekText.Substring(weekText.IndexOf('(') + 1, weekText.IndexOf(')') - weekText.IndexOf('(') - 1));
     }
     public static async Task<Timetable> CreateAsync(BonchAPI api)
     {

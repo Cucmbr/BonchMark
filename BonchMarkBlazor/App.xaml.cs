@@ -76,8 +76,8 @@ namespace BonchMarkBlazor
                     {
                         resultWeek[i] = new DayInfo() { Date = new DateTime(1, 1, 1) };
                     }
-                    return resultWeek; // vonaet nado dodelat
-                }
+                    return resultWeek; // data na kanikulyarnoy nedele neverno!
+                }   
 
                 foreach (var day in Days)
                 {

@@ -101,14 +101,15 @@
     {
         loadingScreenStyle = "display: block;";
         dateValue = DateTime.Parse(args.Value.ToString());
-        weekDelta = (int)Math.Round((dateValue - DateTime.Today).TotalDays / 7);
+        DateTime dateValue2 = dateValue.AddDays(DateTime.Today.DayOfWeek - dateValue.DayOfWeek);
+        weekDelta = (int)Math.Round((dateValue2 - DateTime.Today).TotalDays / 7);
         if (DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
             App.Week = await App.GenerateWeekAsync(App.Timetable.CurrentWeek + weekDelta + 1);
         else
             App.Week = await App.GenerateWeekAsync(App.Timetable.CurrentWeek + weekDelta);
         loadingScreenStyle = "display: none;";
         StateHasChanged();
-        Navigation.NavigateTo($"/timetable/#{dateValue.DayOfWeek}");
+        Navigation.NavigateTo($"/timetable/#{(dateValue.DayOfWeek == DayOfWeek.Sunday ? DayOfWeek.Monday : dateValue.DayOfWeek)}");
     }
 
     private async Task ScrollCheck()
