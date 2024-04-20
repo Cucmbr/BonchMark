@@ -65,7 +65,7 @@
 .slider {
     position: fixed;
     top: 1rem;
-    left: calc((100vw - 6 * 3rem) / 7);
+    left: calc((90vw - 6 * 3rem) / 7);
     width: 3rem;
     height: 2rem;
     border-radius: 0.5rem;
@@ -77,10 +77,16 @@
     animation-delay: calc(var(--scroll) * -1s);
 }
 
+.topbar {
+    display: flex;
+    align-items: center;
+}
+
 .timetable_tabbar {
     display: flex;
     justify-content: space-evenly;
     padding: 0.5rem 0;
+    width: 90%;
 }
 .tabbutton {
     display: flex;
@@ -271,7 +277,7 @@
 }
 @keyframes slide {
     to {
-        left: calc(100vw - (100vw - 6 * 3rem) / 7 - 3rem);
+        left: calc(90vw - (90vw - 6 * 3rem) / 7 - 3rem);
     }
 }
 

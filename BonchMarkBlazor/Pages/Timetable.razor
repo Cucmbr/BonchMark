@@ -7,15 +7,22 @@
         <div class="shadow"></div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z" /></svg>
     </div>
-    <div class="timetable_tabbar">
-        <div class="slider"></div>
-		<a class="tabbutton" href="timetable/#Monday"><h1 class="hh1">ПН</h1></a>
-        <a class="tabbutton" href="timetable/#Tuesday"><h1 class="hh2">ВТ</h1></a>
-        <a class="tabbutton" href="timetable/#Wednesday"><h1 class="hh3">СР</h1></a>
-        <a class="tabbutton" href="timetable/#Thursday"><h1 class="hh4">ЧТ</h1></a>
-        <a class="tabbutton" href="timetable/#Friday"><h1 class="hh5">ПТ</h1></a>
-        <a class="tabbutton" href="timetable/#Saturday"><h1 class="hh6">СБ</h1></a>
+    <div class="topbar">
+        <div class="timetable_tabbar">
+            <div class="slider"></div>
+            <a class="tabbutton" href="timetable/#Monday"><h1 class="hh1">ПН</h1></a>
+            <a class="tabbutton" href="timetable/#Tuesday"><h1 class="hh2">ВТ</h1></a>
+            <a class="tabbutton" href="timetable/#Wednesday"><h1 class="hh3">СР</h1></a>
+            <a class="tabbutton" href="timetable/#Thursday"><h1 class="hh4">ЧТ</h1></a>
+            <a class="tabbutton" href="timetable/#Friday"><h1 class="hh5">ПТ</h1></a>
+            <a class="tabbutton" href="timetable/#Saturday"><h1 class="hh6">СБ</h1></a>
+        </div>
+        <div class="calendar_container">
+            <input type="date" lang="ru-RU" @onchange="GoToDate"/>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z" /></svg>
+        </div>
     </div>
+
     <div class="main_container" style="@scrollLock" @ontouchend="ScrollCheck" @onmouseup="ScrollCheck">
     <div class="week_arrow arrow_left">
         @* Arrow *@<svg style="@arrowStyle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg>
@@ -29,10 +36,6 @@
                     <h1>@day.Date.Date.ToString("d MMMM", System.Globalization.CultureInfo.GetCultureInfo("ru-RU")) 
                         <span style=@(weekDelta != 0 ? "background: var(--main-color); border-radius: 1rem; padding: 0.2rem 0.5rem; color: var(--main-bgcolor); font-size: 1.25rem;" : "display: none;")>@(weekDelta != 0 ? $"{(weekDelta > 0 ? "+" : "")}{weekDelta}" : "")</span>
                     </h1>
-                    <div class="calendar_container">
-                        <input type="date" lang="ru-RU" @onchange="GoToDate"/>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z" /></svg>
-                    </div>
                 </div>
                 @if (day.Classes != null)
                 {
@@ -88,8 +91,8 @@
 </script>
 
 @code {
+    private bool TransitionInProgress = false;
     private string color_style;
-    private ElementReference mainContainer;
     private int weekDelta = 0;
     private DateTime dateValue;
     private string loadingScreenStyle = "display: none;";
@@ -114,10 +117,12 @@
 
     private async Task ScrollCheck()
     {
-
+        if (TransitionInProgress)
+            return;
+        TransitionInProgress = true;
         string scrollValue = await JsRuntime.InvokeAsync<string>("GetScroll");
 #if ANDROID
-    float scroll = Convert.ToSingle(scrollValue.Substring(scrollValue.IndexOf("--main_scroll:") + 14, scrollValue.Length - scrollValue.IndexOf("--main_scroll:") - 15), new System.Globalization.CultureInfo("en-US"));
+        float scroll = Convert.ToSingle(scrollValue.Substring(scrollValue.IndexOf("--main_scroll:") + 14, scrollValue.Length - scrollValue.IndexOf("--main_scroll:") - 15), new System.Globalization.CultureInfo("en-US"));
 #else
         float scroll = Convert.ToSingle(scrollValue.Substring(scrollValue.IndexOf("--main_scroll: ") + 15, scrollValue.Length - scrollValue.IndexOf("--main_scroll: ") - 16), new System.Globalization.CultureInfo("en-US"));
 #endif
@@ -149,6 +154,8 @@
                 Navigation.NavigateTo("/timetable/#Monday");
                 break;
         }
+        
+        TransitionInProgress = false;
     }
 
     private void ChangeColor(ClassInfo classInfo)
