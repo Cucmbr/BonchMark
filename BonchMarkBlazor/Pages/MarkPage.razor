@@ -38,11 +38,11 @@
                     break;
                 case BonchAPI.MarkStatus.UpdateOnly:
                     status_msg = "Преподаватель ещё не начал занятие 🕰️";
-                    status_msg_style = "background-color: #FDF1DE; display: block";
+                    status_msg_style = "background-color: var(--accent-bgcolor); display: block";
                     break;
                 case BonchAPI.MarkStatus.NoButton:
                     status_msg = "Занятия ещё не начались 💤";
-                    status_msg_style = "background-color: #FDF1DE; display: block";
+                    status_msg_style = "background-color: var(--accent-bgcolor); display: block";
                     break;
                 case BonchAPI.MarkStatus.RequestFailed:
                     status_msg = "Ошибка! ❌";
