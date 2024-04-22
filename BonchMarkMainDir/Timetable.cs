@@ -9,7 +9,7 @@ public class Timetable
 
     private IHtmlDocument _fullTimetable;
     private IElement _tableNode;
-    private BonchAPI _api;
+    private readonly BonchAPI _api;
 
     private Timetable(IHtmlDocument html, BonchAPI api)
     {
