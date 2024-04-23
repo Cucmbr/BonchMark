@@ -25,7 +25,7 @@ public class Messages
     }
     public static async Task<Messages> CreateAsync(BonchAPI api) => new Messages(api.Parser.ParseDocument(await api.PullMessagesAsync()), api);
 
-    public void LoadItems()
+    private void LoadItems()
     {
         Items = new List<MailItem>(20);
 

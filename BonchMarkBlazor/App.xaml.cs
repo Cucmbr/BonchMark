@@ -8,16 +8,18 @@ public partial class App : Application
     internal static string[] Files;
     internal static BonchAPI Api = new BonchAPI();
     internal static Timetable Timetable;
-		internal static List<DayInfo> Days;
+    internal static Messages Messages;
+	internal static List<DayInfo> Days;
     internal static Task<bool> Starting;
     internal static Task<BonchAPI.MarkStatus> Marking;
     internal static Task<bool> Timetabling;
+    internal static Task<bool> MessLoading;
 
-		internal static string[] userData;
+	internal static string[] userData;
 
     internal static DayInfo[] Week { get; set; } = new DayInfo[6];
 
-		public App()
+	public App()
     {
         InitializeComponent();
 
@@ -47,7 +49,7 @@ public partial class App : Application
             return await Api.MarkAsync();
         else
             return BonchAPI.MarkStatus.RequestFailed;
-		}
+	}
 
     static internal async Task<bool> TimetableAsync()
     {
@@ -57,9 +59,18 @@ public partial class App : Application
             return true;
         }
         else
-        {
             return false;
+    }
+
+    static internal async Task<bool> MessLoadAsync()
+    {
+        if (await Starting)
+        {
+            Messages = await Messages.CreateAsync(Api);
+            return true;
         }
+        else
+            return false;
     }
 
     static internal async Task<DayInfo[]> GenerateWeekAsync(int weekNumber)
