@@ -20,10 +20,7 @@ public class Timetable
         var weekText = _fullTimetable.QuerySelector("div.container-fluid > h3").TextContent;
         CurrentWeek = Convert.ToInt32(weekText.Substring(weekText.IndexOf('№') + 1, weekText.IndexOf('(') - weekText.IndexOf('№') - 1));
     }
-    public static async Task<Timetable> CreateAsync(BonchAPI api)
-    {
-        return new Timetable(api.Parser.ParseDocument(await api.PullTimetableAsync(0)), api);
-    }
+    public static async Task<Timetable> CreateAsync(BonchAPI api) => new Timetable(api.Parser.ParseDocument(await api.PullTimetableAsync(0)), api);
 
     public async Task Update(int weekNumber)
     {
