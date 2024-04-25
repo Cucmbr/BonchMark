@@ -33,11 +33,12 @@ public class Messages
         {
             var itemNodes = _mailTableNode.QuerySelectorAll("tr");
 
-            foreach (var itemNode in itemNodes)
+            for (int i = 0; i < itemNodes.Length; i+=2)
             {
-                var itemData = itemNode.QuerySelectorAll("td");
+                var itemData = itemNodes[i].QuerySelectorAll("td");
+                var mess = itemNodes[i + 1].QuerySelector("td span").TextContent;
 
-                Items.Add(new MailItem(itemData[0].TextContent, itemData[1].TextContent, itemData[2].TextContent, itemData[3].TextContent));
+                Items.Add(new MailItem(itemData[0].TextContent, itemData[1].TextContent, itemData[2].TextContent, itemData[3].TextContent, mess));
             }
         }
     }

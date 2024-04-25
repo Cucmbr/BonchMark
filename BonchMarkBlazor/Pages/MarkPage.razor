@@ -19,6 +19,7 @@
 
     private async Task OnButtonMark()
     {
+        App.MessLoadAsync();
         mark_btn_style = "opacity: .5;";
         btn_disable = true;
         if (!await App.Starting)
